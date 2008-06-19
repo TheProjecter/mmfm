@@ -141,20 +141,24 @@ h1{
     color:#e9e6e6;
 	line-height:1.2em;
 }
-form { margin: 0px; }
+form {
+   margin: 0px;
+}
 input, input.mouseover, a.button {
-	border: 1px solid #565656;
-	background:#2a2a2a;
-	font: 11pt Verdana,sans-serif;
-	font-weight: bold;
-	line-height:100%;
+   border-width: 1px;
+   border-style: solid;
+   border-color: #565656;
+   background:#2a2a2a;
+   font: 10pt Verdana,sans-serif;
+   font-weight: bold;
+   line-height:130%;
 }
 input {
-    background:#2a2a2a;
+    background-color:#2a2a2a;
     color:#d4d4d4;
     padding:2px 1px;
-	margin-right: 2px;
-	margin-left: 2px;
+   margin-right: 2px;
+   margin-left: 2px;
 }
 input[type="text"],input[type="password"]{
 	background-color:#a2a2a;
