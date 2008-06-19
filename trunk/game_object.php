@@ -536,10 +536,10 @@ $output .= "<div id=\"pane3\">
 	$cel_counter = 0;
 	$row_flag = 0;
 	$output .= "<table class=\"hidden\" align=\"center\"><tr>";
-	$result1 = $sql->query("SELECT item,ChanceOrQuestChance,`groupid`,mincountOrRef,maxcount,freeforall, lootcondition, condition_value1, condition_value2 FROM gameobject_loot_template WHERE entry = {$go['data1']} ORDER BY ChanceOrQuestChance DESC");
+	$result1 = $sql->query("SELECT item,ChanceOrQuestChance,`groupid`,mincountOrRef,maxcount, lootcondition, condition_value1, condition_value2 FROM gameobject_loot_template WHERE entry = {$go['data1']} ORDER BY ChanceOrQuestChance DESC");
 	while ($item = $sql->fetch_row($result1)){
 		$cel_counter++;
-		$tooltip = get_item_name($item[0])." ($item[0])<br />{$lang_game_object['drop_chance']}: $item[1]%<br />{$lang_game_object['quest_drop_chance']}: $item[2]%<br />{$lang_game_object['drop_chance']}: $item[3]-$item[4]<br />{$lang_game_object['freeforall']}: $item[5]<br />{$lang_game_object['lootcondition']}: $item[6]<br />{$lang_game_object['condition_value1']}: $item[7]<br />{$lang_game_object['condition_value2']}: $item[8]";
+		$tooltip = get_item_name($item[0])." ($item[0])<br />{$lang_game_object['drop_chance']}: $item[1]%<br />{$lang_game_object['quest_drop_chance']}: $item[2]%<br />{$lang_game_object['drop_chance']}: $item[3]-$item[4]<br />{$lang_game_object['lootcondition']}: $item[5]<br />{$lang_game_object['condition_value1']}: $item[6]<br />{$lang_game_object['condition_value2']}: $item[7]";
 		$output .= "<td>";
 		$output .= maketooltip("<img src=\"".get_icon($item[0])."\" class=\"icon_border\" alt=\"\" />", "$item_datasite$item[0]", "$tooltip", "item_tooltip", "target=\"_blank\"");
 		$output .= "<br /><input type=\"checkbox\" name=\"del_loot_items[]\" value=\"$item[0]\" /></td>";
@@ -568,8 +568,6 @@ $output .= "<div id=\"pane3\">
 	<td><input type=\"text\" name=\"mincountOrRef\" size=\"8\" maxlength=\"3\" value=\"1\" /></td>
 <td>".makeinfocell($lang_game_object['max_count'],$lang_game_object['max_count_desc'])."</td>
 	<td><input type=\"text\" name=\"maxcount\" size=\"8\" maxlength=\"3\" value=\"1\" /></td>
-<td>".makeinfocell($lang_game_object['freeforall'],$lang_game_object['freeforall_desc'])."</td>
-	<td><input type=\"text\" name=\"freeforall\" size=\"8\" maxlength=\"3\" value=\"1\" /></td>
 </tr>
 <tr>
 <td>".makeinfocell($lang_game_object['lootcondition'],$lang_game_object['lootcondition_desc'])."</td>
@@ -729,8 +727,6 @@ function do_update() {
 		else $mincountOrRef = 0;
 	if (isset($_POST['maxcount']) && $_POST['maxcount'] != '') $maxcount = $sql->quote_smart($_POST['maxcount']);
 		else $maxcount = 0;
-	if (isset($_POST['freeforall']) && $_POST['freeforall'] != '') $freeforall = $sql->quote_smart($_POST['freeforall']);
-		else $freeforall = 0;
 	if (isset($_POST['lootcondition']) && $_POST['lootcondition'] != '') $lootcondition = $sql->quote_smart($_POST['lootcondition']);
 		else $lootcondition = 0;
 	if (isset($_POST['condition_value1']) && $_POST['condition_value1'] != '') $condition_value1 = $sql->quote_smart($_POST['condition_value1']);
@@ -813,8 +809,8 @@ function do_update() {
 		}
 
 	if ($item){
-	$sql_query .= "INSERT INTO gameobject_loot_template (entry, item, ChanceOrQuestChance, `groupid`, mincountOrRef, maxcount, freeforall, lootcondition, condition_value1, condition_value2)
-			VALUES ($data1,$item,'$ChanceOrQuestChance', '$groupid' ,$mincountOrRef ,$maxcount ,$freeforall ,$lootcondition ,$condition_value1 ,$condition_value2);\n";
+	$sql_query .= "INSERT INTO gameobject_loot_template (entry, item, ChanceOrQuestChance, `groupid`, mincountOrRef, maxcount, lootcondition, condition_value1, condition_value2)
+			VALUES ($data1,$item,'$ChanceOrQuestChance', '$groupid' ,$mincountOrRef ,$maxcount ,$lootcondition ,$condition_value1 ,$condition_value2);\n";
 	}
 
 	if ($del_loot_items){

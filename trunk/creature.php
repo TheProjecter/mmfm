@@ -1240,10 +1240,10 @@ $output .= "<div id=\"pane5\">
 	$cel_counter = 0;
 	$row_flag = 0;
 	$output .= "<table class=\"hidden\" align=\"center\"><tr>";
-	$result1 = $sql->query("SELECT item,ChanceOrQuestChance,`groupid`,mincountOrRef,maxcount,freeforall, lootcondition, condition_value1,condition_value2 FROM creature_loot_template WHERE entry = {$mob['lootid']} ORDER BY ChanceOrQuestChance DESC");
+	$result1 = $sql->query("SELECT item,ChanceOrQuestChance,`groupid`,mincountOrRef,maxcount, lootcondition, condition_value1,condition_value2 FROM creature_loot_template WHERE entry = {$mob['lootid']} ORDER BY ChanceOrQuestChance DESC");
 	while ($item = $sql->fetch_row($result1)){
 		$cel_counter++;
-		$tooltip = get_item_name($item[0])." ($item[0])<br />{$lang_creature['drop_chance']}: $item[1]%<br />{$lang_creature['quest_drop_chance']}: $item[2]%<br />{$lang_creature['drop_chance']}: $item[3]-$item[4]<br />{$lang_creature['freeforall']}: $item[5]<br />{$lang_creature['lootcondition']}: $item[6]<br />{$lang_creature['condition_value1']}: $item[7]<br />{$lang_creature['condition_value2']}: $item[8]";
+		$tooltip = get_item_name($item[0])." ($item[0])<br />{$lang_creature['drop_chance']}: $item[1]%<br />{$lang_creature['quest_drop_chance']}: $item[2]%<br />{$lang_creature['drop_chance']}: $item[3]-$item[4]<br />{$lang_creature['lootcondition']}: $item[5]<br />{$lang_creature['condition_value1']}: $item[6]<br />{$lang_creature['condition_value2']}: $item[7]";
 		$output .= "<td>";
 		$output .= maketooltip("<img src=\"".get_icon($item[0])."\" class=\"icon_border\" alt=\"\" />", "$item_datasite$item[0]", $tooltip, "item_tooltip");
 		$output .= "<br /><input type=\"checkbox\" name=\"del_loot_items[]\" value=\"$item[0]\" /></td>";
@@ -1272,8 +1272,6 @@ $output .= "<div id=\"pane5\">
 	<td><input type=\"text\" name=\"mincountOrRef\" size=\"8\" maxlength=\"3\" value=\"1\" /></td>
 <td>".makeinfocell($lang_creature['max_count'],$lang_creature['max_count_desc'])."</td>
 	<td><input type=\"text\" name=\"maxcount\" size=\"8\" maxlength=\"3\" value=\"1\" /></td>
-<td>".makeinfocell($lang_creature['freeforall'],$lang_creature['freeforall_desc'])."</td>
-	<td><input type=\"text\" name=\"freeforall\" size=\"8\" maxlength=\"3\" value=\"1\" /></td>
 </tr>
 <tr>
 <td>".makeinfocell($lang_creature['lootcondition'],$lang_creature['lootcondition_desc'])."</td>
@@ -1424,10 +1422,10 @@ $output .= "<div id=\"pane9\">
 	$cel_counter = 0;
 	$row_flag = 0;
 	$output .= "<table class=\"hidden\" align=\"center\"><tr>";
-	$result1 = $sql->query("SELECT item,ChanceOrQuestChance,`groupid`,mincountOrRef,maxcount,freeforall, lootcondition, condition_value1, condition_value2 FROM skinning_loot_template WHERE entry = {$mob['skinloot']} ORDER BY ChanceOrQuestChance DESC");
+	$result1 = $sql->query("SELECT item,ChanceOrQuestChance,`groupid`,mincountOrRef,maxcount, lootcondition, condition_value1, condition_value2 FROM skinning_loot_template WHERE entry = {$mob['skinloot']} ORDER BY ChanceOrQuestChance DESC");
 	while ($item = $sql->fetch_row($result1)){
 		$cel_counter++;
-		$tooltip = get_item_name($item[0])." ($item[0])<br />{$lang_creature['drop_chance']}: $item[1]%<br />{$lang_creature['quest_drop_chance']}: $item[2]%<br />{$lang_creature['drop_chance']}: $item[3]-$item[4]<br />{$lang_creature['freeforall']}: $item[5]<br />{$lang_creature['lootcondition']}: $item[6]<br />{$lang_creature['condition_value1']}: $item[7]<br />{$lang_creature['condition_value2']}: $item[8]";
+		$tooltip = get_item_name($item[0])." ($item[0])<br />{$lang_creature['drop_chance']}: $item[1]%<br />{$lang_creature['quest_drop_chance']}: $item[2]%<br />{$lang_creature['drop_chance']}: $item[3]-$item[4]<br />{$lang_creature['lootcondition']}: $item[5]<br />{$lang_creature['condition_value1']}: $item[6]<br />{$lang_creature['condition_value2']}: $item[7]";
 		$output .= "<td>";
 		$output .= maketooltip("<img src=\"".get_icon($item[0])."\" class=\"icon_border\" alt=\"\" />", "$item_datasite$item[0]", $tooltip, "item_tooltip");
 		$output .= "<br /><input type=\"checkbox\" name=\"del_skin_items[]\" value=\"$item[0]\" /></td>";
@@ -1456,8 +1454,6 @@ $output .= "<div id=\"pane9\">
 	<td><input type=\"text\" name=\"skin_mincountOrRef\" size=\"8\" maxlength=\"3\" value=\"1\" /></td>
 <td>".makeinfocell($lang_creature['max_count'],$lang_creature['max_count_desc'])."</td>
 	<td><input type=\"text\" name=\"skin_maxcount\" size=\"8\" maxlength=\"3\" value=\"1\" /></td>
-<td>".makeinfocell($lang_creature['freeforall'],$lang_creature['freeforall_desc'])."</td>
-	<td><input type=\"text\" name=\"skin_freeforall\" size=\"8\" maxlength=\"3\" value=\"1\" /></td>
 </tr>
 <tr>
 <td>".makeinfocell($lang_creature['lootcondition'],$lang_creature['lootcondition_desc'])."</td>
@@ -1481,10 +1477,10 @@ $output .= "<div id=\"pane10\">
 	$cel_counter = 0;
 	$row_flag = 0;
 	$output .= "<table class=\"hidden\" align=\"center\"><tr>";
-	$result1 = $sql->query("SELECT item,ChanceOrQuestChance,`groupid`,mincountOrRef,maxcount,freeforall, lootcondition, condition_value1, condition_value2 FROM pickpocketing_loot_template WHERE entry = {$mob['pickpocketloot']} ORDER BY ChanceOrQuestChance DESC");
+	$result1 = $sql->query("SELECT item,ChanceOrQuestChance,`groupid`,mincountOrRef,maxcount, lootcondition, condition_value1, condition_value2 FROM pickpocketing_loot_template WHERE entry = {$mob['pickpocketloot']} ORDER BY ChanceOrQuestChance DESC");
 	while ($item = $sql->fetch_row($result1)){
 		$cel_counter++;
-		$tooltip = get_item_name($item[0])." ($item[0])<br />{$lang_creature['drop_chance']}: $item[1]%<br />{$lang_creature['quest_drop_chance']}: $item[2]%<br />{$lang_creature['drop_chance']}: $item[3]-$item[4]<br />{$lang_creature['freeforall']}: $item[5]<br />{$lang_creature['lootcondition']}: $item[6]<br />{$lang_creature['condition_value1']}: $item[7]<br />{$lang_creature['condition_value2']}: $item[8]";
+		$tooltip = get_item_name($item[0])." ($item[0])<br />{$lang_creature['drop_chance']}: $item[1]%<br />{$lang_creature['quest_drop_chance']}: $item[2]%<br />{$lang_creature['drop_chance']}: $item[3]-$item[4]<br />{$lang_creature['lootcondition']}: $item[5]<br />{$lang_creature['condition_value1']}: $item[6]<br />{$lang_creature['condition_value2']}: $item[7]";
 		$output .= "<td>";
 		$output .= maketooltip("<img src=\"".get_icon($item[0])."\" class=\"icon_border\" alt=\"\" />", "$item_datasite$item[0]", $tooltip, "item_tooltip");
 		$output .= "<br /><input type=\"checkbox\" name=\"del_pp_items[]\" value=\"$item[0]\" /></td>";
@@ -1513,8 +1509,6 @@ $output .= "<div id=\"pane10\">
 	<td><input type=\"text\" name=\"pp_mincountOrRef\" size=\"8\" maxlength=\"3\" value=\"1\" /></td>
 <td>".makeinfocell($lang_creature['max_count'],$lang_creature['max_count_desc'])."</td>
 	<td><input type=\"text\" name=\"pp_maxcount\" size=\"8\" maxlength=\"3\" value=\"1\" /></td>
-<td>".makeinfocell($lang_creature['freeforall'],$lang_creature['freeforall_desc'])."</td>
-	<td><input type=\"text\" name=\"pp_freeforall\" size=\"8\" maxlength=\"3\" value=\"1\" /></td>
 </tr>
 <tr>
 <td>".makeinfocell($lang_creature['lootcondition'],$lang_creature['lootcondition_desc'])."</td>
@@ -1691,8 +1685,6 @@ function do_update() {
 	if (isset($_POST['maxcount']) && $_POST['maxcount'] != '') $maxcount = $sql->quote_smart($_POST['maxcount']);
 		else $maxcount = 0;
 
-	if (isset($_POST['freeforall']) && $_POST['freeforall'] != '') $freeforall = $sql->quote_smart($_POST['freeforall']);
-		else $freeforall = 0;
 	if (isset($_POST['lootcondition']) && $_POST['lootcondition'] != '') $lootcondition = $sql->quote_smart($_POST['lootcondition']);
 		else $lootcondition = 0;
 	if (isset($_POST['condition_value1']) && $_POST['condition_value1'] != '') $condition_value1 = $sql->quote_smart($_POST['condition_value1']);
@@ -1733,8 +1725,6 @@ function do_update() {
 	if (isset($_POST['skin_maxcount']) && $_POST['skin_maxcount'] != '') $skin_maxcount = $sql->quote_smart($_POST['skin_maxcount']);
 		else $skin_maxcount = 0;
 
-	if (isset($_POST['skin_freeforall']) && $_POST['skin_freeforall'] != '') $skin_freeforall = $sql->quote_smart($_POST['skin_freeforall']);
-		else $skin_freeforall = 0;
 	if (isset($_POST['skin_lootcondition']) && $_POST['skin_lootcondition'] != '') $skin_lootcondition = $sql->quote_smart($_POST['skin_lootcondition']);
 		else $skin_lootcondition = 0;
 	if (isset($_POST['skin_condition_value1']) && $_POST['skin_condition_value1'] != '') $skin_condition_value1 = $sql->quote_smart($_POST['skin_condition_value1']);
@@ -1756,8 +1746,6 @@ function do_update() {
 	if (isset($_POST['pp_maxcount']) && $_POST['pp_maxcount'] != '') $pp_maxcount = $sql->quote_smart($_POST['pp_maxcount']);
 		else $pp_maxcount = 0;
 
-	if (isset($_POST['pp_freeforall']) && $_POST['pp_freeforall'] != '') $pp_freeforall = $sql->quote_smart($_POST['pp_freeforall']);
-		else $pp_freeforall = 0;
 	if (isset($_POST['pp_lootcondition']) && $_POST['pp_lootcondition'] != '') $pp_lootcondition = $sql->quote_smart($_POST['pp_lootcondition']);
 		else $pp_lootcondition = 0;
 	if (isset($_POST['pp_condition_value1']) && $_POST['pp_condition_value1'] != '') $pp_condition_value1 = $sql->quote_smart($_POST['pp_condition_value1']);
@@ -1907,8 +1895,8 @@ function do_update() {
 	}
 
 	if ($item){
-	$sql_query .= "INSERT INTO creature_loot_template (entry, item, ChanceOrQuestChance, `groupid`, mincountOrRef, maxcount, freeforall, lootcondition, condition_value1, condition_value2)
-			VALUES ($lootid,$item,'$ChanceOrQuestChance', '$groupid' ,$mincountOrRef ,$maxcount ,$freeforall ,$lootcondition ,$condition_value1 ,$condition_value2);\n";
+	$sql_query .= "INSERT INTO creature_loot_template (entry, item, ChanceOrQuestChance, `groupid`, mincountOrRef, maxcount, lootcondition, condition_value1, condition_value2)
+			VALUES ($lootid,$item,'$ChanceOrQuestChance', '$groupid' ,$mincountOrRef ,$maxcount ,$lootcondition ,$condition_value1 ,$condition_value2);\n";
 	}
 
 	if ($del_loot_items){
@@ -1917,8 +1905,8 @@ function do_update() {
 	}
 
 	if ($skin_item){
-	$sql_query .= "INSERT INTO skinning_loot_template (entry, item, ChanceOrQuestChance, `groupid`, mincountOrRef, maxcount, freeforall, lootcondition, condition_value1, condition_value2)
-			VALUES ($skinloot,$skin_item,'$skin_ChanceOrQuestChance', '$skin_groupid' ,$skin_mincountOrRef ,$skin_maxcount ,$skin_freeforall,$skin_lootcondition ,$skin_condition_value1 ,$skin_condition_value2);\n";
+	$sql_query .= "INSERT INTO skinning_loot_template (entry, item, ChanceOrQuestChance, `groupid`, mincountOrRef, maxcount, lootcondition, condition_value1, condition_value2)
+			VALUES ($skinloot,$skin_item,'$skin_ChanceOrQuestChance', '$skin_groupid' ,$skin_mincountOrRef ,$skin_maxcount ,$skin_lootcondition ,$skin_condition_value1 ,$skin_condition_value2);\n";
 	}
 
 	if ($del_skin_items){
@@ -1927,8 +1915,8 @@ function do_update() {
 	}
 
 	if ($pp_item){
-	$sql_query .= "INSERT INTO pickpocketing_loot_template (entry, item, ChanceOrQuestChance, `groupid`, mincountOrRef, maxcount, freeforall, lootcondition, condition_value1, condition_value2)
-			VALUES ($pickpocketloot,$pp_item,'$pp_ChanceOrQuestChance', '$pp_groupid' ,$pp_mincountOrRef ,$pp_maxcount ,$pp_freeforall,$pp_lootcondition ,$pp_condition_value1 ,$pp_condition_value2);\n";
+	$sql_query .= "INSERT INTO pickpocketing_loot_template (entry, item, ChanceOrQuestChance, `groupid`, mincountOrRef, maxcount, lootcondition, condition_value1, condition_value2)
+			VALUES ($pickpocketloot,$pp_item,'$pp_ChanceOrQuestChance', '$pp_groupid' ,$pp_mincountOrRef ,$pp_maxcount ,$pp_lootcondition ,$pp_condition_value1 ,$pp_condition_value2);\n";
 	}
 
 	if ($del_pp_items){
