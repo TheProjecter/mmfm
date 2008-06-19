@@ -18,6 +18,8 @@ $lang_global = array(
 	'err_no_user' => 'No Users Found!',
 	'err_no_records_found' => 'No Records Found!',
 	'err_no_search_passed' => 'No Search Value Passed.',
+	'err_invalid_input' => 'Invalid Input',
+	'err_no_permission' => 'You don\'t have to permission to access or edit this data',
 	// ------ GENERAL -----
 	'empty_fields' => 'Some Fields Left Blank',
 	'search' => 'Search',
@@ -54,6 +56,41 @@ $lang_login = array(
 	'remember_me' => 'Remember Me',
 	'pass_recovery' => 'Lost Password?'
 	);
+
+// ----- GUILD.PHP -----
+$lang_guild = array(
+	'id' => 'ID',
+	'guild_name' => 'Guild Name',
+	'guild_leader' => 'Guild Leader',
+	'guild_faction' => 'Faction',
+	'tot_members' => 'Total Members',
+	'tot_m_online' => 'Online Members',
+	'remove' => 'Rem.',
+	'guild_motd' => 'Guild MOTD',
+	'create_date' => 'Create Date',	
+	'by_name' =>'by name',
+	'by_guild_leader' => 'by leader name',
+	'by_id' => 'by id',
+	'tot_guilds' => 'Total Guilds',
+	'guild' => 'Guild',
+	'info' => 'Info',
+	'motd' => 'MOTD',
+	'name' => 'Name',
+	'race' => 'Race',
+	'class' => 'Class',
+	'level' => 'level',
+	'rank' => 'Rank',
+	'pnote' => 'Player Note',
+	'offnote' => 'Office Note',
+	'online' => 'Online',
+	'llogin' => 'Last Login (Days)',
+	'del_guild' => 'Delete Guild',
+	'guild_id' => 'Guild id',
+	'guild_search_result' => 'Guilds Search Results',
+	'show_guilds' => 'Show all Guilds',
+	'browse_guilds' => 'Browse Guilds'
+	);
+
 
 $lang_register = array(
 	// ----- REGISTER.PHP -----
@@ -584,36 +621,6 @@ $lang_edit = array(
 	'tot_chars' => 'Total Characters'
 	);
 
-$lang_guild = array(
-	// ----- GUILD.PHP -----
-	'by_name' =>'by Name',
-	'by_guild_leader' => 'by Guid Leader',
-	'by_create_date' => 'by Create Date',
-	'by_id' => 'by Guild Id',
-	'id' => 'ID',
-	'guild_name' => 'Guild Name',
-	'guild_leader' => 'Guild Leader',
-	'guild_motd' => 'Guild MOTD',
-	'create_date' => 'Create Date',
-	'err_no_guild_found' => 'No Guilds Found!',
-	'tot_guilds' => 'Total Guilds',
-	'guilds' => 'Guilds',
-	'tot_found' => 'Total Found',
-	'guild' => 'Guild',
-	'create_date' => 'Foundation Date',
-	'info' => 'Info',
-	'motd' => 'MOTD',
-	'level' => 'level',
-	'name' => 'Name',
-	'remove' => 'Rem.',
-	'rank' => 'Rank',
-	'tot_members' => 'Total Members',
-	'err_no_members_found' => 'No Members Found!',
-	'del_guild' => 'Delete Guild',
-	'guild_id' => 'Guild id',
-	'guild_search_result' => 'Guilds Search Results',
-	'browse_guilds' => 'Browse Guilds'
-	);
 
 $lang_mail = array(
 	// ----- MAIL.PHP -----

@@ -9,7 +9,11 @@
  */
 
 require_once("header.php");
-valid_login(3);
+
+// override default security : guild.php (guild leader deletes guild)
+if(!isset($_POST['override']) || $_POST['override'] != '1') 
+  valid_login(3);
+
 
 //#################################################################################################################
 // print cleanup options
