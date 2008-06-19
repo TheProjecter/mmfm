@@ -16,13 +16,25 @@ $icon_type = Array(
 	1 => array(1,$lang_realm['pvp']),
 	4 => array(4,$lang_realm['normal']),
 	6 => array(6,$lang_realm['rp']),
-	8 => array(8,$lang_realm['rppvp'])
+	8 => array(8,$lang_realm['rppvp']),
+	16 => array(16,$lang_realm['ffapvp']),
 );
 $timezone_type = Array(
-	1 => array(1,$lang_realm['english']),
-	2 => array(2,$lang_realm['deutsch']),
-	3 => array(3,$lang_realm['french']),
-	4 => array(4,$lang_realm['others'])
+	1 => array(1,$lang_realm['development']),
+	2 => array(2,$lang_realm['united_states']),
+	3 => array(3,$lang_realm['oceanic']),
+	4 => array(4,$lang_realm['latin_america']),
+	5 => array(5,$lang_realm['tournament']),
+	6 => array(6,$lang_realm['korea']),
+	8 => array(8,$lang_realm['english']),
+	9 => array(9,$lang_realm['german']),
+	10 => array(10,$lang_realm['french']),
+	11 => array(11,$lang_realm['spanish']),
+	12 => array(12,$lang_realm['russian']),
+	14 => array(14,$lang_realm['taiwan']),
+	16 => array(16,$lang_realm['china']),
+	26 => array(26,$lang_realm['test_server']),
+	28 => array(28,$lang_realm['qa_server']),
 );
 
 
@@ -30,7 +42,7 @@ $timezone_type = Array(
 // SHOW REALMS
 //####################################################################################################
 function show_realm() {
-valid_login(3);
+valid_login(5);
  global $lang_global, $lang_realm, $output, $realm_db, $user_name, $server, $realm_id, $icon_type, $timezone_type;
 
  $sql = new SQL;
@@ -352,4 +364,4 @@ default:
 }
 
 require_once("footer.php");
-?>
+?>

@@ -95,7 +95,23 @@ $map_id = Array(
 	564 => array(564,$lang_id_tab['black_temple']),
 	565 => array(565,$lang_id_tab['gruuls_lair']),
 	566 => array(566,$lang_id_tab['netherstorm_arena']),
-	568 => array(568,$lang_id_tab['zulaman'])
+	568 => array(568,$lang_id_tab['zulaman']),
+	571 => array(571,$lang_id_tab['northrend']),
+	574 => array(574,$lang_id_tab['utgarde_keep']),
+	575 => array(575,$lang_id_tab['utgarde_pinnacle']),
+	576 => array(576,$lang_id_tab['nexus']),
+	578 => array(578,$lang_id_tab['oculus']),
+	580 => array(580,$lang_id_tab['sunwell_plateau']),
+	585 => array(585,$lang_id_tab['magisters_terrace']),
+	595 => array(595,$lang_id_tab['cot_stratholme_past']),
+	599 => array(599,$lang_id_tab['halls_of_stone']),
+	600 => array(600,$lang_id_tab['draktheron_keep']),
+	601 => array(601,$lang_id_tab['azjol_nerub']),
+	602 => array(602,$lang_id_tab['halls_of_lightning']),
+	603 => array(603,$lang_id_tab['ulduar']),
+	604 => array(604,$lang_id_tab['gundrak'])
+	
+	
 );
 
 function get_map_name($id){
@@ -123,6 +139,9 @@ case 4:
    break;
 case 5:
    return($lang_id_tab['priest']);
+   break;
+case 6:
+   return($lang_id_tab['death_knight']);
    break;
 case 7:
    return($lang_id_tab['shaman']);
@@ -261,6 +280,7 @@ function get_zone_name($id){
 ////////////////////////////////////////////////////////////////////////////////////////////////
 //get skill name by its id
 $skill_id = Array(
+	773 => array(773,$lang_id_tab['SKILL_INSCRIPTION']),
 	762 => array(762,$lang_id_tab['SKILL_RIDING']),
 	759 => array(759,$lang_id_tab['SKILL_LANG_DRAENEI']),
 	755 => array(755,$lang_id_tab['SKILL_JEWELCRAFTING']),
