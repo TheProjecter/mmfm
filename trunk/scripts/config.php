@@ -11,7 +11,7 @@
  * instead of 2 supported by version of Q.SA
  */
 
-$version = "0.1.7a";
+$version = "0.11";
 
 //---- SQL Configuration ----
 
@@ -101,9 +101,9 @@ $site_encoding = "iso-8859-1"; 	//default encoding
 
 //---- IRC Options ------
 $irc_cfg = array(
-			'server' => "irc.quakenet.org",	//irc server
+			'server' => "mangos.cjb.net",	//irc server
 			'port' => 6667,					//port
-			'channel' => "test"				//channel
+			'channel' => "minimanager"				//channel
 			);
 
 //---- External Links ----
