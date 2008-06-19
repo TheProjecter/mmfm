@@ -299,7 +299,7 @@ function do_pass_recovery(){
 	$body = str_replace("<username>", $user_name, $body);
 	$body = str_replace("<password>", substr(sha1(strtoupper($user_name)),0,7), $body);
 	$body = str_replace("<activate_link>",
-		$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']."?action=do_pass_activate&amp;h=".$sql->result($result, 0, 'I')."&amp;p=".substr(sha1(strtoupper($user_name)),0,7), $body);
+		$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']."?action=do_pass_activate&amp;h=".$sql->result($result, 0, 'sha_pass_hash')."&amp;p=".substr(sha1(strtoupper($user_name)),0,7), $body);
 	$body = str_replace("<base_url>", $_SERVER['HTTP_HOST'], $body);
 
 	$mail->WordWrap = 50;
