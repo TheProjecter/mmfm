@@ -284,73 +284,41 @@ $output .= "<script type=\"text/javascript\">
 	$accid = $online[3];
 	$llogin = count_days($online[4], time());
 
- $level = $online[5];
+    $level = $online[5];
 
-			if($level > 0)
-		{
-			$lev = '<font color="#FFFFFF">'.$level.'</font>';
-		}
-		if($level > 9)
-		{
-			$lev = '<font color="#858585">'.$level.'</font>';
-		}
-		if($level > 19)
-		{
-			$lev = '<font color="#339900">'.$level.'</font>';
-		}
-		if($level > 29)
-		{
-			$lev = '<font color="#3300CC">'.$level.'</font>';
-		}
-		if($level > 39)
-		{
-			$lev = '<font color="#5552FF">'.$level.'</font>';
-		}
-		if($level > 49)
-		{
-			$lev = '<font color="#FF8000">'.$level.'</font>';
-		}
-		if($level > 59)
-		{
-			$lev = '<font color="#FF0000">'.$level.'</font>';
-		}
-		if($level > 69)
-		{
-			$lev = '<font color="#FF00CC">'.$level.'</font>';
-		}
-		if($level > 70)
-		{
-			$lev = '<font color="#FFF000">'.$level.'</font>';
-		}
+    if($level < 10)
+      $lev = '<font color="#FFFFFF">'.$level.'</font>';
+    else if($level < 20)
+      $lev = '<font color="#858585">'.$level.'</font>';
+    else if($level < 30)
+      $lev = '<font color="#339900">'.$level.'</font>';
+    else if($level < 40)
+      $lev = '<font color="#3300CC">'.$level.'</font>';
+    else if($level < 50)
+      $lev = '<font color="#C552FF">'.$level.'</font>';
+    else if($level < 60)
+      $lev = '<font color="#FF8000">'.$level.'</font>';
+    else if($level < 70)
+      $lev = '<font color="#FFF280">'.$level.'</font>';  
+    else if($level < 80)
+      $lev = '<font color="#FF0000">'.$level.'</font>';  
+    else
+      $lev = '<font color="#000000">'.$level.'</font>';
 
     if($llogin < 1)
-	{
-		$lastlogin = '<font color="#009900">'.$llogin.'</font>';
-	}
-	if($llogin >= 1)
-	{
-		$lastlogin = '<font color="#0000CC">'.$llogin.'</font>';
-	}
-	if($llogin > 5)
-	{
-		$lastlogin = '<font color="#FFFF00">'.$llogin.'</font>';
-	}
-	if($llogin > 15)
-	{
-		$lastlogin = '<font color="#FF8000">'.$llogin.'</font>';
-	}
-	if($llogin > 30)
-	{
-		$lastlogin = '<font color="#FF0000">'.$llogin.'</font>';
-	}
-	if($llogin > 60)
-	{
-		$lastlogin = '<font color="#FF00FF">'.$llogin.'</font>';
-	}
-	if($llogin > 90)
-	{
-		$lastlogin = '<font color="#8000FF">'.$llogin.'</font>';
-	}
+      $lastlogin = '<font color="#009900">'.$llogin.'</font>';
+    else if($llogin < 6)
+      $lastlogin = '<font color="#0000CC">'.$llogin.'</font>';
+    else if($llogin < 16)
+      $lastlogin = '<font color="#FFFF00">'.$llogin.'</font>';
+    else if($llogin < 16)
+      $lastlogin = '<font color="#FF8000">'.$llogin.'</font>';
+    else if($llogin < 31)
+      $lastlogin = '<font color="#FF0000">'.$llogin.'</font>';
+    else if($llogin < 61)
+      $lastlogin = '<font color="#FF00FF">'.$llogin.'</font>';
+    else
+      $lastlogin = '<font color="#FF0000">'.$llogin.'</font>';
 
    		$output .= " <tr>";
 		if ($user_lvl > 2){

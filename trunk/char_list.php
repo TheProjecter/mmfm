@@ -107,6 +107,27 @@ function browse_chars() {
 	$owner_gmlvl = $sql->result($result, 0, 'gmlevel');
 	$owner_acc_name = $sql->result($result, 0, 'username');
 
+    $level = $char[9];
+
+    if($level < 10)
+      $lev = '<font color="#FFFFFF">'.$level.'</font>';
+    else if($level < 20)
+      $lev = '<font color="#858585">'.$level.'</font>';
+    else if($level < 30)
+      $lev = '<font color="#339900">'.$level.'</font>';
+    else if($level < 40)
+      $lev = '<font color="#3300CC">'.$level.'</font>';
+    else if($level < 50)
+      $lev = '<font color="#C552FF">'.$level.'</font>';
+    else if($level < 60)
+      $lev = '<font color="#FF8000">'.$level.'</font>';
+    else if($level < 70)
+      $lev = '<font color="#FFF280">'.$level.'</font>';  
+    else if($level < 80)
+      $lev = '<font color="#FF0000">'.$level.'</font>';  
+    else
+      $lev = '<font color="#000000">'.$level.'</font>';
+
 	if (($user_lvl >= $owner_gmlvl)||($owner_acc_name == $user_name)){
 		 $output .= "<tr>";
 		 if (($user_lvl > $owner_gmlvl)||($owner_acc_name == $user_name))
@@ -117,7 +138,7 @@ function browse_chars() {
 			<td><a href=\"user.php?action=edit_user&amp;error=11&amp;id=$char[2]\">$owner_acc_name</a></td>
 			<td><img src='img/c_icons/{$char[3]}-{$char[10]}.gif' onmousemove='toolTip(\"".get_player_race($char[3])."\",\"item_tooltip\")' onmouseout='toolTip()' /></td>
 			<td><img src='img/c_icons/{$char[4]}.gif' onmousemove='toolTip(\"".get_player_class($char[4])."\",\"item_tooltip\")' onmouseout='toolTip()' /></td>
-			<td>$char[9]</td>
+			<td>$lev</td>
 			<td>".get_map_name($char[6])."</td>
 			<td>".get_zone_name($char[5])."</td>
 			<td>$char[7]</td>
@@ -341,6 +362,27 @@ case "greater_level":
 	$owner_gmlvl = $sql->result($result, 0, 'gmlevel');
 	$owner_acc_name = $sql->result($result, 0, 'username');
 
+    $level = $char[9];
+
+    if($level < 10)
+      $lev = '<font color="#FFFFFF">'.$level.'</font>';
+    else if($level < 20)
+      $lev = '<font color="#858585">'.$level.'</font>';
+    else if($level < 30)
+      $lev = '<font color="#339900">'.$level.'</font>';
+    else if($level < 40)
+      $lev = '<font color="#3300CC">'.$level.'</font>';
+    else if($level < 50)
+      $lev = '<font color="#C552FF">'.$level.'</font>';
+    else if($level < 60)
+      $lev = '<font color="#FF8000">'.$level.'</font>';
+    else if($level < 70)
+      $lev = '<font color="#FFF280">'.$level.'</font>';  
+    else if($level < 80)
+      $lev = '<font color="#FF0000">'.$level.'</font>';  
+    else
+      $lev = '<font color="#000000">'.$level.'</font>';
+
   if (($user_lvl >= $owner_gmlvl)||($owner_acc_name == $user_name)){
 		 $output .= "<tr>";
 		 if (($user_lvl > $owner_gmlvl)||($owner_acc_name == $user_name))$output .= "
@@ -352,7 +394,7 @@ case "greater_level":
 		<td><a href=\"user.php?action=edit_user&amp;error=11&amp;id=$char[2]\">$owner_acc_name</a></td>
 		<td><img src='img/c_icons/{$char[3]}-{$char[10]}.gif' onmousemove='toolTip(\"".get_player_race($char[3])."\",\"item_tooltip\")' onmouseout='toolTip()' /></td>
 		<td><img src='img/c_icons/{$char[4]}.gif' onmousemove='toolTip(\"".get_player_class($char[4])."\",\"item_tooltip\")' onmouseout='toolTip()' /></td>
-		<td>$char[9]</td>
+		<td>$lev</td>
 		<td>".get_map_name($char[6])."</td>
 		<td>".get_zone_name($char[5])."</td>
 		<td>$char[7]</td>

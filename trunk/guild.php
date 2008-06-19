@@ -296,15 +296,20 @@ $dir = ($dir) ? 0 : 1;
     else
       $lev = '<font color="#000000">'.$member[4].'</font>';
 
-
-  if($llogin < 2)
-    $lastlogin = '<font color="#00FF00">'.$llogin.'</font>';
-  else if($llogin < 8)
-    $lastlogin = '<font color="#FFFF00">'.$llogin.'</font>';
-  else if($llogin < 31)
-    $lastlogin = '<font color="#FF6600">'.$llogin.'</font>';
-  else
-    $lastlogin = '<font color="#FF0000">'.$llogin.'</font>';
+    if($llogin < 1)
+      $lastlogin = '<font color="#009900">'.$llogin.'</font>';
+    else if($llogin < 6)
+      $lastlogin = '<font color="#0000CC">'.$llogin.'</font>';
+    else if($llogin < 16)
+      $lastlogin = '<font color="#FFFF00">'.$llogin.'</font>';
+    else if($llogin < 16)
+      $lastlogin = '<font color="#FF8000">'.$llogin.'</font>';
+    else if($llogin < 31)
+      $lastlogin = '<font color="#FF0000">'.$llogin.'</font>';
+    else if($llogin < 61)
+      $lastlogin = '<font color="#FF00FF">'.$llogin.'</font>';
+    else
+      $lastlogin = '<font color="#FF0000">'.$llogin.'</font>';
 
     $output .= " <tr>";
       // gm, gildleader or own account! are allowed to remove from guild

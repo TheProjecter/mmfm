@@ -159,26 +159,26 @@ if ($online)
 		$guild_name = $sql->fetch_row($sql->query("SELECT `name` FROM `guild` WHERE `guildid`={$char[9]}"));
 
 
-		$level = $char[7];
+    $level = $char[7];
 
-		if($level > 0)
-			$lev = '<font color="#FFFFFF">'.$level.'</font>';
-		if($level > 9)
-			$lev = '<font color="#858585">'.$level.'</font>';
-		if($level > 19)
-			$lev = '<font color="#339900">'.$level.'</font>';
-		if($level > 29)
-			$lev = '<font color="#3300CC">'.$level.'</font>';
-		if($level > 39)
-			$lev = '<font color="#5552FF">'.$level.'</font>';
-		if($level > 49)
-			$lev = '<font color="#FF8000">'.$level.'</font>';
-		if($level > 59)
-			$lev = '<font color="#FF0000">'.$level.'</font>';
-		if($level > 69)
-			$lev = '<font color="#FF00CC">'.$level.'</font>';
-		if($level > 70)
-			$lev = '<font color="#FFF000">'.$level.'</font>';
+    if($level < 10)
+      $lev = '<font color="#FFFFFF">'.$level.'</font>';
+    else if($level < 20)
+      $lev = '<font color="#858585">'.$level.'</font>';
+    else if($level < 30)
+      $lev = '<font color="#339900">'.$level.'</font>';
+    else if($level < 40)
+      $lev = '<font color="#3300CC">'.$level.'</font>';
+    else if($level < 50)
+      $lev = '<font color="#C552FF">'.$level.'</font>';
+    else if($level < 60)
+      $lev = '<font color="#FF8000">'.$level.'</font>';
+    else if($level < 70)
+      $lev = '<font color="#FFF280">'.$level.'</font>';  
+    else if($level < 80)
+      $lev = '<font color="#FF0000">'.$level.'</font>';  
+    else
+      $lev = '<font color="#000000">'.$level.'</font>';
 
 		$output .= "<tr>
 		 <td><a href=\"char.php?id=$char[0]\"><span onmousemove='toolTip(\"".get_player_user_level($gm)."\",\"item_tooltip\")' onmouseout='toolTip()'>$char[1]</span></a></td>
