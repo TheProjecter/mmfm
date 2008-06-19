@@ -112,6 +112,12 @@ function del_guild($guid,$realm){
 		}
 
 	$query = $sql_01->query("DELETE FROM guild_member WHERE guildid = '$guid'");
+	$query = $sql_01->query("DELETE FROM guild_bank_eventlog WHERE guildid = '$guid'");
+	$query = $sql_01->query("DELETE FROM guild_bank_right WHERE guildid = '$guid'");
+	$query = $sql_01->query("DELETE FROM guild_bank_tab WHERE guildid = '$guid'");
+	$query = $sql_01->query("DELETE FROM guild_eventlog WHERE guildid = '$guid'");
+	$query = $sql_01->query("DELETE FROM item_instance WHERE guid IN (SELECT item_guid FROM guild_bank_item WHERE guildid ='$guid')");
+	$query = $sql_01->query("DELETE FROM guild_bank_item WHERE guildid = '$guid'");
 
 	if ($sql_01->affected_rows()){
 		$sql_01->close();
