@@ -970,7 +970,7 @@ if ($sql->num_rows($result) == 1){
   <div id=\"tab_content\">
   <font class=\"bold\">$char[1] - ".get_player_race($char[2])." ".get_player_class($char[3])."</font><br /><br />
 
-  <table class=\"lined\" style=\"width: 550px;\">
+  <table class=\"lined\" style=\"width: 600px;\">
   <tr>
     <th class=\"title\" colspan=\"".($user_lvl ? "3" : "2")."\" align=\"left\">{$lang_char['skills']}</th></tr>
   <tr>"
