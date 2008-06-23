@@ -146,6 +146,7 @@ $lang_index = array(
 	'level' => 'Level',
 	'map' => 'Map',
 	'zone' => 'Zone',
+	'rank' => 'Rank',
 	'honor_kills' => 'H.K'
 	);
 
@@ -4205,4 +4206,4 @@ $lang_instances = array(
 	);
 
 
-?>
+?>
