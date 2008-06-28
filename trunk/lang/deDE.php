@@ -55,6 +55,40 @@ $lang_login = array(
 	'pass_recovery' => 'Passwort vergessen?'
 	);
 
+// ----- GUILD.PHP -----
+$lang_guild = array(
+	'id' => 'ID',
+	'guild_name' => 'Gilden Name',
+	'guild_leader' => 'Gilden Anf&uuml;hrer',
+	'guild_faction' => 'Fraktion',
+	'tot_members' => 'Mitglieder insgesammt',
+	'tot_m_online' => 'Mitglieder Online',
+	'remove' => 'L&ouml;.',
+	'guild_motd' => 'Gilden MOTD',
+	'create_date' => 'Erstellunsdatum',	
+	'by_name' =>'nach Name',
+	'by_guild_leader' => 'nach Anf&uuml;hrer Name',
+	'by_id' => 'nach ID',
+	'tot_guilds' => 'Gilden gesammt',
+	'guild' => 'Gilde',
+	'info' => 'Info',
+	'motd' => 'MOTD',
+	'name' => 'Name',
+	'race' => 'Rasse',
+	'class' => 'Klasse',
+	'level' => 'Level',
+	'rank' => 'Rang',
+	'pnote' => 'Spieler Notiz',
+	'offnote' => 'Notiz',
+	'online' => 'Online',
+	'llogin' => 'Letzter Login (Tages)',
+	'del_guild' => 'L&ouml;sche Gilde',
+	'guild_id' => 'Gilden ID',
+	'guild_search_result' => 'Gilden Suchergebnis',
+	'show_guilds' => 'Zeige alle Gilden',
+	'browse_guilds' => 'Gilden durchsuche'
+	);
+	
 $lang_register = array(
 	// ----- REGISTER.PHP -----
 	'create_acc' =>'Kontoerstellung',
@@ -579,36 +613,6 @@ $lang_edit = array(
 	'tot_chars' => 'Gesamtanzahl der Charactere'
 	);
 
-$lang_guild = array(
-	// ----- GUILD.PHP -----
-	'by_name' =>'nach Name',
-	'by_guild_leader' => 'nach Gilden Leiter',
-	'by_create_date' => 'nach Erstellungsdatum',
-	'by_id' => 'nach Gilden ID',
-	'id' => 'ID',
-	'guild_name' => 'Gildenname',
-	'guild_leader' => 'Gilden Leiter',
-	'guild_motd' => 'Gilden MOTD',
-	'create_date' => 'Erstellungsdatum',
-	'err_no_guild_found' => 'Keine Gilden gefunden!',
-	'tot_guilds' => 'Gilden gesamt',
-	'guilds' => 'Gilden',
-	'tot_found' => 'Funde gesamt',
-	'guild' => 'Gilden',
-	'create_date' => 'Gr&uuml;ndungsdatum',
-	'info' => 'Info',
-	'motd' => 'MOTD',
-	'level' => 'Level',
-	'name' => 'Name',
-	'remove' => 'Rem.', //TODO: Translate
-	'rank' => 'Rang',
-	'tot_members' => 'Mitglieder gesamt',
-	'err_no_members_found' => 'Keine Mitglieder gefunden!',
-	'del_guild' => 'Gilde l&ouml;schen',
-	'guild_id' => 'Gilden ID',
-	'guild_search_result' => 'Gildensuchergebnis',
-	'browse_guilds' => 'Gilden durchsuchen'
-	);
 
 $lang_mail = array(
 	// ----- MAIL.PHP -----

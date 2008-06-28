@@ -232,11 +232,9 @@ $dir = ($dir) ? 0 : 1;
   answerbox.btn_ok='{$lang_global['yes_low']}';
   answerbox.btn_cancel='{$lang_global['no']}';
  </script>
- <center>
- <fieldset style=\"width: 950px;\">
-  <legend>{$lang_guild['guild']}</legend>
-  
- <table class=\"hidden\" style=\"width: 910px;\"><tr><td>
+ <fieldset class=\"full_frame\">
+ <legend>{$lang_guild['guild']}</legend> 
+ <table class=\"hidden\" style=\"width: 100%;\"><tr><td>
   <table class=\"lined\">
   <tr class=\"bold\"><td>$guild_data[1]</td></tr>
   <tr><td><b>{$lang_guild['create_date']}:</b><br>$guild_data[4]</td></tr>";
@@ -245,8 +243,10 @@ $dir = ($dir) ? 0 : 1;
   if ($guild_data[3] != '') $output .= "<tr><td><b>{$lang_guild['motd']}:</b><br>$guild_data[3]</td></tr>";
   
   $output .="<tr><td><b>{$lang_guild['tot_m_online']}:</b><br>$guild_data[6] / $guild_data[5]</td></tr>
-             </table></td></tr>
-               <table><tr><td class=\"hidden\" align=\"right\">".generate_pagination("guild.php?action=view_guild&amp;id=$guild_id&amp;order_by=$order_by&amp;dir=".!$dir, $guildmemberCount, $itemperpage, $start)."</td></tr></table>
+             </table></td></tr><td>
+             
+             <div align=\"right\">".generate_pagination("guild.php?action=view_guild&amp;id=$guild_id&amp;order_by=$order_by&amp;dir=".!$dir, $guildmemberCount, $itemperpage, $start)."</div>
+             
              <tr><td><table class=\"lined\"><tr>";
     
    if ($user_lvl > 2 || $inguild || $amIguildleader) $output .= " <th width=\"3%\">{$lang_guildl['remove']}</th>";
@@ -347,7 +347,7 @@ $dir = ($dir) ? 0 : 1;
 }
 
 $output .= "</td></tr></table>
-            </fieldset></center><br />";
+            </fieldset><br />";
 }
 
 //########################################################################################################################
@@ -379,7 +379,7 @@ function del_guild() {
         makebutton($lang_global['no'], "guild.php?action=view_guild&amp;id=$id",120);
  $output .= "</td></tr>
         </table>
-    </form></center><br />";
+    </form><br />";
     
     $sql->close();
 }
@@ -409,7 +409,7 @@ function rem_char_from_guild(){
   
   $amIguildleaderOrSelfRemoval = $sql->result($q_amIguildleaderOrSelfRemoval, 0, '1');
 
-  if ($user_lvl < 2 || !$amIguildleaderOrSelfRemoval ) redirect("guild.php?error=6");
+  if ($user_lvl < 2 && !$amIguildleaderOrSelfRemoval ) redirect("guild.php?error=6");
     
   $char_data = $sql->query("SELECT data FROM `characters` WHERE guid = '$guid'");
   $data = $sql->result($char_data, 0, 'data');
