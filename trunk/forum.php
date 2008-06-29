@@ -92,7 +92,7 @@
 require_once("header.php");
 require_once("scripts/forum.conf.php");
 require_once("scripts/extra_lib.php");
-valid_login(0);
+valid_login($action_permission['read']);
 
 if (isset($_COOKIE["lang"])){
 	$forumlang = $_COOKIE["lang"];

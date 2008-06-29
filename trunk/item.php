@@ -10,7 +10,7 @@
 require_once("header.php");
 require_once("scripts/itemset_tab.php");
 require_once("scripts/get_lib.php");
-valid_login(1);
+valid_login($action_permission['read']);
 
 function makeinfocell($text,$tooltip){
  return "<a href=\"#\" onmouseover=\"toolTip('".addslashes($tooltip)."','info_tooltip')\" onmouseout=\"toolTip()\">$text</a>";

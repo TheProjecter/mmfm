@@ -128,248 +128,67 @@ $proxy_cfg = Array(
 	'pass' => ""
 	);
 
-//menu content by user level
+// ---- Module and Security settings ----
+// --   Meaning of the columns : TARGET, LANG_TEXT, ( READ/VIEW , UPDATE , INSERT , DELETE ) min Permission GM LEVEL
+// --   Files excluded for this : Login.php, Pomm.php 
+// --   - Both files don't use header.php, so we can't include this method.. but its not a big deal
+//
+// --   Permmissions are set, but only READ Permission used right now... 
+// --   - Updates will follow
+// -- 
+// --   If not set or lower, higher permission from lower rights overwrite higher permission  ( Example : VIEW = 5, UDDATE = 0 >> UPDATE = 5)
+
 $menu_array = Array(
-	5 => array("SysOP" ,array(
-				array("index.php", 'main', array()),
-				array("#", 'users', array(
-							array("user.php", 'accounts'),
-							array("char_list.php", 'characters'),
-							array("guild.php", 'guilds'),
-							array("arenateam.php", 'arena_teams'),
-							array("honor.php", 'honor'),
-							array("banned.php", 'banned_list'),
-							array("cleanup.php", 'cleanup'),
-							array("stat.php", 'statistics'),
-							array("stat_on.php", 'statistics_on'),
-							array("javascript:void(0);\" onclick=\"window.open('./pomm/pomm.php', 'pomm', 'Toolbar=0, Location=0, Directories=0, Status=0, Menubar=0, Scrollbar=0, Resizable=0, Copyhistory=1, Width=784, Height=525')", 'player_map'),
-							),
-						),
-				array("#", 'tools', array(
-							array("ssh.php", 'ssh_line'),
-							array("run_patch.php", 'run_sql_patch'),
-							array("ticket.php", 'tickets'),
-							array("ahstats.php", 'auctionhouse'),
-							array("events.php", 'events'),
-							array("realm.php", 'realm'),
-							array("motd.php", 'add_motd'),
-							array("mail.php", 'mail'),
-							array("irc.php", 'irc'),
-							array("instances.php", 'instances'),
-							),
-						),
-				array("#", 'db', array(
-							array("item.php", 'items'),
-							array("creature.php", 'creatures'),
-							array("game_object.php", 'game_object'),
-							array("tele.php", 'teleports'),
-							array("command.php", 'command'),
-							array("backup.php", 'backup'),
-							array("repair.php", 'repair'),
-							),
-						),
-				array("#", 'forums', array(
-							array("forum.php", 'forums'),
-							array("javascript:void(0);\" onclick=\"window.open('./forum.html', 'forum')", 'forums'),
-							),
-						),
-				)
-		),
-	4 => array("Admin" ,array(
-				array("index.php", 'main', array()),
-				array("#", 'users', array(
-							array("user.php", 'accounts'),
-							array("char_list.php", 'characters'),
-							array("guild.php", 'guilds'),
-							array("arenateam.php", 'arena_teams'),
-							array("honor.php", 'honor'),
-							array("banned.php", 'banned_list'),
-							array("cleanup.php", 'cleanup'),
-							array("stat.php", 'statistics'),
-							array("stat_on.php", 'statistics_on'),
-							array("javascript:void(0);\" onclick=\"window.open('./pomm/pomm.php', 'pomm', 'Toolbar=0, Location=0, Directories=0, Status=0, Menubar=0, Scrollbar=0, Resizable=0, Copyhistory=1, Width=784, Height=525')", 'player_map'),
-							),
-						),
-				array("#", 'tools', array(
-							array("ssh.php", 'ssh_line'),
-							array("run_patch.php", 'run_sql_patch'),
-							array("ticket.php", 'tickets'),
-							array("ahstats.php", 'auctionhouse'),
-							array("events.php", 'events'),
-							array("realm.php", 'realm'),
-							array("motd.php", 'add_motd'),
-							array("mail.php", 'mail'),
-							array("irc.php", 'irc'),
-							array("instances.php", 'instances'),
-							),
-						),
-				array("#", 'db', array(
-							array("item.php", 'items'),
-							array("creature.php", 'creatures'),
-							array("game_object.php", 'game_object'),
-							array("tele.php", 'teleports'),
-							array("command.php", 'command'),
-							array("backup.php", 'backup'),
-							array("repair.php", 'repair'),
-							),
-						),
-				array("#", 'forums', array(
-							array("forum.php", 'forums'),
-							array("javascript:void(0);\" onclick=\"window.open('./forum.html', 'forum')", 'forums'),
-							),
-						),
-				)
-		),
-	3 => array("BugTracker" ,array(
-				array("index.php", 'main', array()),
-				array("#", 'users', array(
-							array("user.php", 'accounts'),
-							array("char_list.php", 'characters'),
-							array("guild.php", 'guilds'),
-							array("arenateam.php", 'arena_teams'),
-							array("honor.php", 'honor'),
-							array("banned.php", 'banned_list'),
-							array("cleanup.php", 'cleanup'),
-							array("stat.php", 'statistics'),
-							array("stat_on.php", 'statistics_on'),
-							array("javascript:void(0);\" onclick=\"window.open('./pomm/pomm.php', 'pomm', 'Toolbar=0, Location=0, Directories=0, Status=0, Menubar=0, Scrollbar=0, Resizable=0, Copyhistory=1, Width=784, Height=525')", 'player_map'),
-							),
-						),
-				array("#", 'tools', array(
-							array("ssh.php", 'ssh_line'),
-							array("run_patch.php", 'run_sql_patch'),
-							array("ticket.php", 'tickets'),
-							array("ahstats.php", 'auctionhouse'),
-							array("events.php", 'events'),
-							array("realm.php", 'realm'),
-							array("motd.php", 'add_motd'),
-							array("mail.php", 'mail'),
-							array("irc.php", 'irc'),
-							array("instances.php", 'instances'),
-							),
-						),
-				array("#", 'db', array(
-							array("item.php", 'items'),
-							array("creature.php", 'creatures'),
-							array("game_object.php", 'game_object'),
-							array("tele.php", 'teleports'),
-							array("command.php", 'command'),
-							array("backup.php", 'backup'),
-							array("repair.php", 'repair'),
-							),
-						),
-				array("#", 'forums', array(
-							array("forum.php", 'forums'),
-							array("javascript:void(0);\" onclick=\"window.open('./forum.html', 'forum')", 'forums'),
-							),
-						),
-				)
-		),
-	2 => array("GameMaster" ,array(
-				array("index.php", 'main', array()),
-				array("#", 'users', array(
-							array("user.php", 'accounts'),
-							array("char_list.php", 'characters'),
-							array("guild.php", 'guilds'),
-							array("arenateam.php", 'arena_teams'),
-							array("honor.php", 'honor'),
-							array("banned.php", 'banned_list'),
-							array("stat.php", 'statistics'),
-							array("stat_on.php", 'statistics_on'),
-							array("javascript:void(0);\" onclick=\"window.open('./pomm/pomm.php', 'pomm', 'Toolbar=0, Location=0, Directories=0, Status=0, Menubar=0, Scrollbar=0, Resizable=0, Copyhistory=1, Width=784, Height=525')", 'player_map'),
-							),
-						),
-				array("#", 'tools', array(
-							array("ticket.php", 'tickets'),
-							array("ahstats.php", 'auctionhouse'),
-							array("events.php", 'events'),
-							array("motd.php", 'add_motd'),
-							array("mail.php", 'mail'),
-							array("irc.php", 'irc'),
-							array("instances.php", 'instances'),
-							),
-						),
-				array("#", 'db', array(
-							array("item.php", 'items'),
-							array("creature.php", 'creatures'),
-							array("game_object.php", 'game_object'),
-							array("tele.php", 'teleports'),
-							array("command.php", 'command'),
-							),
-						),
-				array("#", 'forums', array(
-							array("forum.php", 'forums'),
-							array("javascript:void(0);\" onclick=\"window.open('./forum.html', 'forum')", 'forums'),
-							),
-						),
-			)
-		),
-	1 => array("Moderator" ,array(
-				array("index.php", 'main', array()),
-				array("#", 'users', array(
-							array("user.php", 'accounts'),
-							array("char_list.php", 'characters'),
-							array("guild.php", 'guilds'),
-							array("arenateam.php", 'arena_teams'),
-							array("honor.php", 'honor'),
-							array("banned.php", 'banned_list'),
-							array("stat.php", 'statistics'),
-							array("stat_on.php", 'statistics_on'),
-							array("javascript:void(0);\" onclick=\"window.open('./pomm/pomm.php', 'pomm', 'Toolbar=0, Location=0, Directories=0, Status=0, Menubar=0, Scrollbar=0, Resizable=0, Copyhistory=1, Width=784, Height=525')", 'player_map'),
-							),
-						),
-				array("#", 'tools', array(
-							array("ticket.php", 'tickets'),
-							array("ahstats.php", 'auctionhouse'),
-							array("events.php", 'events'),
-							array("motd.php", 'add_motd'),
-							array("irc.php", 'irc'),
-							array("instances.php", 'instances'),
-							),
-					),
-				array("#", 'db', array(
-							array("item.php", 'items'),
-							array("creature.php", 'creatures'),
-							array("game_object.php", 'game_object'),
-							array("tele.php", 'teleports'),
-							array("command.php", 'command'),
-							),
-					),
-				array("#", 'forums', array(
-							array("forum.php", 'forums'),
-							array("javascript:void(0);\" onclick=\"window.open('./forum.html', 'forum')", 'forums'),
-							),
-						),
-			)
-		),
-	0 => array("Player" ,array(
-				array("index.php", 'main', array()),
-				array("#", 'users', array(
-							array("guild.php", 'guilds'),
-							array("arenateam.php", 'arena_teams'),
-							array("honor.php", 'honor'),
-							array("stat.php", 'statistics'),
-							array("stat_on.php", 'statistics_on'),
-							array("javascript:void(0);\" onclick=\"window.open('./pomm/pomm.php', 'pomm', 'Toolbar=0, Location=0, Directories=0, Status=0, Menubar=0, Scrollbar=0, Resizable=0, Copyhistory=1, Width=784, Height=525')", 'player_map'),
-							),
-						),
-				array("#", 'tools', array(
-							array("ahstats.php", 'auctionhouse'),
-							array("command.php", 'command'),
-							array("events.php", 'events'),
-							array("irc.php", 'irc'),
-							array("instances.php", 'instances'),
-							),
-					),
-				array("#", 'forums', array(
-							array("forum.php", 'forums'),
-							array("javascript:void(0);\" onclick=\"window.open('./forum.html', 'forum')", 'forums'),
-							),
-						),
-			)
-		),
-
+  array("index.php", 'main', array()),
+	array("#", 'users', array(
+	  array("user.php", 'accounts',1,0,0,0),
+	  array("char_list.php", 'characters',1,0,0,0),
+	  array("guild.php", 'guilds',0,0,0,0),
+	  array("arenateam.php", 'arena_teams',0,0,0,0),
+	  array("honor.php", 'honor',0,0,0,0),
+	  array("banned.php", 'banned_list',1,0,0,0),
+	  array("cleanup.php", 'cleanup',3,0,0,0),
+	  array("stat.php", 'statistics',0,0,0,0),
+	  array("stat_on.php", 'statistics_on',0,0,0,0),
+	  array("javascript:void(0);\" onclick=\"window.open('./pomm/pomm.php', 'pomm', 'Toolbar=0, Location=0, Directories=0, Status=0, Menubar=0, Scrollbar=0, Resizable=0, Copyhistory=1, Width=784, Height=525')", 'player_map',0,0,0,0),
+	  ),
+	),
+	array("#", 'tools', array(
+	  array("ssh.php", 'ssh_line',3,0,0,0),
+	  array("run_patch.php", 'run_sql_patch',3,0,0,0),
+	  array("ticket.php", 'tickets',1,0,0,0),
+	  array("ahstats.php", 'auctionhouse',0,0,0,0),
+	  array("events.php", 'events',0,0,0,0),
+	  array("realm.php", 'realm',0,0,0,0),
+	  array("motd.php", 'add_motd',1,0,0,0),
+	  array("mail.php", 'mail',1,0,0,0),
+	  array("irc.php", 'irc',0,0,0,0),
+	  array("instances.php", 'instances',0,0,0,0),
+	  ),
+	),
+	array("#", 'db', array(
+	  array("item.php", 'items',1,0,0,0),
+	  array("creature.php", 'creatures',1,0,0,0),
+	  array("game_object.php", 'game_object',1,0,0,0),
+	  array("tele.php", 'teleports',1,0,0,0),
+	  array("command.php", 'command',0,0,0,0),
+	  array("backup.php", 'backup',3,0,0,0),
+	  array("repair.php", 'repair',3,0,0,0),
+	  ),
+	),
+	array("#", 'forums', array(
+	  array("forum.php", 'forums',0,0,0,0),
+    array("javascript:void(0);\" onclick=\"window.open('./forum.html', 'forum')", 'forums',0,0,0,0),
+	  ),
+	),
+	array("#", 'invisible', array(
+	  array("char.php", 'character',0,0,0,0),
+	  array("char_edit.php", 'char_edit',1,0,0,0),
+	  array("edit.php", 'MyAccount',0,0,0,0),
+	  array("index.php, 'Startpage'",0,0,0,0),
+	  ),
+	),
 );
-
+				
 $debug = false; //set to true if full php debugging requierd.
 ?>

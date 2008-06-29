@@ -9,7 +9,7 @@
  */
  
 require_once("header.php");
-valid_login(0);
+valid_login($action_permission['read']);
 
 $icon_type = Array(
 	0 => array(0,$lang_realm['normal']),

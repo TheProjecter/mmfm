@@ -9,7 +9,7 @@
  * modded by melefire for rev 4500 and up
  */
 require_once("header.php");
-valid_login(1);
+valid_login($action_permission['read']);
 include_once("./scripts/get_lib.php");
 
 // return npcflag

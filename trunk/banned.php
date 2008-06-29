@@ -9,7 +9,7 @@
  */
 
 require_once("header.php");
-valid_login(1);
+valid_login($action_permission['read']);
 
 //########################################################################################################################
 // SHOW BANNED LIST

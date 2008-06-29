@@ -9,7 +9,7 @@
  */
 
 require_once("header.php");
-valid_login(0);
+valid_login($action_permission['read']);
 require_once("scripts/id_tab.php");
 //########################################################################################################################
 // BROWSE ARENA TEAMS

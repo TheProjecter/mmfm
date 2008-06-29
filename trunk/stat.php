@@ -9,7 +9,7 @@
  */
 
 require_once("header.php");
-valid_login(0);
+valid_login($action_permission['read']);
 
 $race = Array(
 	1 => array(1,$lang_id_tab['human'],"",""),

@@ -9,7 +9,7 @@
  *         remove events with same start and end date
  */
 require_once("header.php");
-valid_login(0);
+valid_login($action_permission['read']);
 
 /*--------------------------------------------------*/
 

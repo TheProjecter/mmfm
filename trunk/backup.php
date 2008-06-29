@@ -10,7 +10,7 @@
  
 require_once("header.php");
 require_once("scripts/backup_tab.php");
-valid_login(3);
+valid_login($action_permission['read']);
 
 //##############################################################################################
 // print backup options step one

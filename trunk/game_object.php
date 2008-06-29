@@ -8,7 +8,7 @@
  * License: GNU General Public License v2(GPL)
  */
 require_once("header.php");
-valid_login(1);
+valid_login($action_permission['read']);
 
  $go_type = Array(
 	0 => array(0,$lang_game_object['DOOR']),

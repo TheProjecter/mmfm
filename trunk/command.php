@@ -9,7 +9,7 @@
  */
 
 include("header.php");
- valid_login(0);
+ valid_login($action_permission['read']);
 
 //#######################################################################################
 // PRINT COMMAND FORM
@@ -83,7 +83,7 @@ function print_commands_form(){
 //#######################################################################################################
 function update_commands(){
  global  $lang_global, $lang_command, $output, $user_lvl;
- valid_login(3);
+ valid_login($action_permission['read']);
 
  if(isset($_GET['check'])) $check = $_GET['check'];
 	else redirect("command.php?error=1");
@@ -131,7 +131,7 @@ function update_commands(){
 function doupdate_commands() {
  global $lang_global, $output, $mangos_db, $realm_id;
 
- valid_login(3);
+ valid_login($action_permission['read']);
 
  $sql = new SQL;
  $sql->connect($mangos_db[$realm_id]['addr'], $mangos_db[$realm_id]['user'], $mangos_db[$realm_id]['pass'], $mangos_db[$realm_id]['name']);

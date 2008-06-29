@@ -181,6 +181,7 @@ $lang_header = array(
 	'forums' => 'Forums',
 	'honor' => 'Honor Rankings', //TODO
 	'auctionhouse' => 'Auktionshaus',
+	'statistics_on' => 'Online Statistiken',
 	'events' => 'Events'
 	);
 
