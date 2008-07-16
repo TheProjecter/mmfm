@@ -36,11 +36,13 @@ a:hover, a:focus{ color: #A47236; text-decoration: none }
 	background-repeat: no-repeat;
 	width: 500px;
 }
+
 .table_top_middle {
 	background-image: url(logo_m.gif);
 	text-align: right;
 	width: 298px;
 }
+
 .table_top_right {
 	background-image: url(logo_r.gif);
 	background-repeat: no-repeat;
@@ -56,15 +58,18 @@ a:hover, a:focus{ color: #A47236; text-decoration: none }
 	width: 36em; /*total len*/
 	text-align: left;
 }
+
 #menuwrapper {
 	font:10pt Verdana,sans-serif;
 }
+
 #menubar, #menubar ul {
 	padding: 0;
 	margin: 0;
 	list-style: none;
 	line-height: 160%;
 }
+
 #menubar a {
 	display: block;
 	text-decoration: none;
@@ -115,6 +120,7 @@ a:hover, a:focus{ color: #A47236; text-decoration: none }
 	background-color: #76827B !important; /*submenu selected bg color*/
 	color: #22427E !important; /*submenu selected text color*/
 }
+
 /*********** MENU BAR END***********/
 
 #username {
@@ -142,6 +148,7 @@ h1{
 form {
 	margin: 0px;
 }
+
 input, input.mouseover, a.button {
 	border-width: 1px;
 	border-style: solid;
@@ -213,15 +220,19 @@ fieldset{
 	background-color: #b2c2b9;
 	border: 1px solid #374341;
 }
+
 fieldset.half_frame{
 	width: 550px;
 }
+
 fieldset.tquarter_frame{
 	width: 680px;
 }
+
 fieldset.full_frame{
 	width: 760px;
 }
+
 legend{
 	margin-top:-5px;
 	color: #374341;
@@ -234,6 +245,7 @@ legend{
 }
 
 /*****TABLES******/
+
 table.flat {
 	border-width: 5px;
 	border-spacing: 5px;
@@ -242,9 +254,11 @@ table.flat {
 	background-color: #b2c2b9;
 	text-align: left;
 }
+
 table.flat td {
 	padding: 5px;
 }
+
 table.hidden {
 	border-width: 0px;
 	border-spacing: 0px;
@@ -252,6 +266,7 @@ table.hidden {
 	border-collapse: collapse;
 	text-align: center;
 }
+
 table.top_hidden {
 	width: 770px;
 	border: 0px none #d4ddd8;
@@ -259,9 +274,11 @@ table.top_hidden {
 	border-collapse: collapse;
 	text-align: left;
 }
+
 table.top_hidden td, table.hidden td {
 	padding: 4px 0px;
 }
+
 table.lined {
 	width: 770px;
 	border-collapse: collapse;
@@ -350,6 +367,7 @@ tr td.bank div.no_slot{
 tr td.bank div.no_slot{
 	background-image: url(../../img/INV/Slot_Bank_Out.gif);
 }
+
 /*****TABLES END******/
 
 #body_main {
@@ -367,25 +385,31 @@ tr td.bank div.no_slot{
 .error {
 	color:#990000; 
 }
+
 .bold {
 	font:13pt Trebuchet MS,sans-serif;
 	font-weight:bold;
 }
+
 .small {
 	font-size: 8px;
-}	
+}
+	
 .large_bold {
 	font-size: 13px;
 	font-weight:bold;
 }
+
 .large {
 	font-size: 13px;
 }
+
 .half_line {
 	font-size: 12px;
 	line-height:1.6em;
 }
 /*****BUBBLE******/
+
 div.bubble {
 	position:relative;
     padding:7px 0px;
@@ -393,12 +417,14 @@ div.bubble {
     margin-bottom:15px;
 	text-align: left;
 }
+
 div.bubble div.top {
 	text-align: center;
 	background-color:#b2c2b9;
 	padding:7px 15px;
     margin:-7px -0px 12px -0px;
 }
+
 i.tl, i.tr, i.bl, i.br {
 	position:absolute;
     width:4px;
@@ -406,21 +432,25 @@ i.tl, i.tr, i.bl, i.br {
     overflow:hidden;
     z-index:30;
 }
+
 i.tl {
     top:0px;
     left:0px;
     background:url(tr.gif);
 }
+
 i.tr {
     top:0px;
     right:0px;
     background:url(tl.gif);
 }
+
 i.bl {
     bottom:0px;
     left:0px;
     background:url(br.gif);
 }
+
 i.br {
     bottom:0px;
     right:0px;

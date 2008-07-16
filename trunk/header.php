@@ -36,7 +36,6 @@ $output .= "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"h
 <head>
  <title>$title</title>
  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=$site_encoding\" />
- <link rel=\"stylesheet\" type=\"text/css\" href=\"templates/".$css_template."/".$css_template."_1024.css\" title=\"default\" />
  <link rel=\"stylesheet\" type=\"text/css\" href=\"templates/".$css_template."/".$css_template."_1024.css\" title=\"1024\" />
  <link rel=\"stylesheet\" type=\"text/css\" href=\"templates/".$css_template."/".$css_template."_1280.css\" title=\"1280\" />
 

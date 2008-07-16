@@ -8,24 +8,16 @@ function getBrowserWidth(){
 		return 0;
 	}
 
-function dynamicLayout(){
-	var browserWidth = getBrowserWidth();
-	if (browserWidth <= 1024){
-		changeLayout("1024");
-	}
-	 if (browserWidth > 1024){
-		changeLayout("1280");
-	}
-}
-
 // changeLayout is based on setActiveStyleSheet function by Paul Sowdon 
 // http://www.alistapart.com/articles/alternate/
-function changeLayout(description){
-   var i, a;
-   for(i=0; (a = document.getElementsByTagName("link")[i]); i++){
-	   if(a.getAttribute("title") == description){a.disabled = false;}
-		else if(a.getAttribute("title") != "default"){a.disabled = true;}
-   }
+function dynamicLayout(){
+	
+	   var i, a;
+	   for(i=0; (a = document.getElementsByTagName("link")[i]); i++){
+		   if (a.getAttribute("title") == 1280){
+		   	 ( getBrowserWidth() > 1024) ? a.disabled = false : a.disabled = true;
+		   	 }
+	   }
 }
 
 function addEvent( obj, type, fn ){
