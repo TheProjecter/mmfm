@@ -30,6 +30,7 @@ function char_main()
     $sql->connect($characters_db[$realm_id]['addr'], $characters_db[$realm_id]['user'], $characters_db[$realm_id]['pass'], $characters_db[$realm_id]['name']);
 
     $id = $sql->quote_smart($_GET['id']);
+    if (!is_numeric($id)) $id = 0;
     
     $result = $sql->query("SELECT account, race FROM `characters` WHERE guid = $id LIMIT 1");
 
@@ -137,7 +138,6 @@ function char_main()
             19 => array(($EQU_TABARD    ? get_item_tooltip($EQU_TABARD)    : 0), ($EQU_TABARD    ? get_icon($EQU_TABARD)    : 0),($EQU_TABARD    ? get_item_border($EQU_TABARD)    : 0))
           );
 
-
         $output .= "<center><div id=\"tab\"><ul><li id=\"selected\"><a href=\"char.php?id=$id\">{$lang_char['char_sheet']}</a></li>";
 
         if (($user_lvl > $owner_gmlvl)||($owner_name == $user_name))
@@ -158,11 +158,9 @@ function char_main()
         {
             while ($aura = $sql->fetch_row($a_results))
             {
-                if (isset($char_aura[$aura[0]]))
-                    $output .= "<a style=\"padding:2px;\" onmouseover=\"toolTip('<font color=\'white\'>".get_char_aura_name($aura[0])."<br />Id: $aura[0]</font>','item_tooltip')\" onmouseout=\"toolTip()\" href=\"$talent_datasite$aura[0]\"><img src=\"img/Char_AURA/".get_char_aura_image($aura[0])."\" width=24 height=24></a>";
-                else  
-                    $output .= ": <a href=\"$talent_datasite$aura[0]\">aura $aura[0]</a> :"; 
-            }
+                // $output .= "<a style=\"padding:2px;\" onmouseover=\"toolTip('<font color=\'white\'>".get_char_aura_name($aura[0])."<br />Id: $aura[0]</font>','item_tooltip')\" onmouseout=\"toolTip()\" href=\"$talent_datasite$aura[0]\"><img src=\"".get_aura_icon($aura[0])."\" width=24 height=24></a>";
+				$output .= "<a style=\"padding:2px;\" href=\"$talent_datasite$aura[0]\"><img src=\"".get_aura_icon($aura[0])."\" width=24 height=24></a>";
+			}
         }
 
   $output .="</div><font class=\"bold\">$char[1] - ".get_player_race($char[2])." ".get_player_class($char[3])." (lvl {$char_data[CHAR_DATA_OFFSET_LEVEL]})</font><br />
@@ -358,11 +356,15 @@ $output .= "<table class=\"hidden\">
           <tr><td>";
     if ($user_lvl > $owner_gmlvl){
       makebutton($lang_char['chars_acc'], "user.php?action=edit_user&amp;id=$owner_acc_id",140);
+  $output .= "</td><td>";
       makebutton($lang_char['edit_button'], "char_edit.php?id=$id",140);
+  $output .= "</td><td>";
       }
     if (($user_lvl > 0)&&(($user_lvl > $owner_gmlvl)||($owner_name == $user_name))){
       makebutton($lang_char['del_char'], "char_list.php?action=del_char_form&amp;check%5B%5D=$id",140);
+  $output .= "</td><td>";
       makebutton($lang_char['send_mail'], "mail.php?type=ingame_mail&amp;to=$char[1]",140);
+  $output .= "</td><td>";
       }
     makebutton($lang_global['back'], "javascript:window.history.back()",140);
  $output .= "</td></tr>
@@ -384,7 +386,6 @@ $output .= "<table class=\"hidden\">
 } else error($lang_char['no_char_found']);
 $sql->close();
 }
-
 
 //########################################################################################################################
 // SHOW INV. AND BANK ITEMS
@@ -442,7 +443,6 @@ if (($user_lvl > $owner_gmlvl)||($owner_name == $user_name)){
   $equiped_bag_id = array(0,0,0,0,0);
   $equip_bnk_bag_id = array(0,0,0,0,0,0,0,0);
 
-
   while ($slot = $sql->fetch_row($result))
   {
     if ($slot[0] == 0 && $slot[1] > 18)
@@ -485,8 +485,7 @@ if (($user_lvl > $owner_gmlvl)||($owner_name == $user_name)){
     }
   }
 
-$output .= "<center>
-<div id=\"tab\">
+$output .= "<center><div id=\"tab\">
 <ul>
   <li><a href=\"char.php?id=$id\">{$lang_char['char_sheet']}</a></li>
   <li id=\"selected\"><a href=\"char.php?id=$id&amp;action=char_inv\">{$lang_char['inventory']}</a></li>
@@ -499,18 +498,19 @@ $output .= "</ul>
 </div>
 
 <div id=\"tab_content\">
- <img src=".get_image_dir($char[4],$char[5],$char[1],$char[2],0).">
- <br>
+ <img src=".get_image_dir($char[4],$char[5],$char[1],$char[2],0)." />
+ <br \>
  <font class=\"bold\">$char[0] - ".get_player_race($char[1])." ".get_player_class($char[2])." (lvl {$char[4]})
- <br>
- <br>
+ <br \>
+ <br \>
 
 <table class=\"lined\" style=\"width: 700px;\">
   <tr>
    <th>";
+
   if($equiped_bag_id[1]){
     $output .= maketooltip("<img class=\"bag_icon\" src=\"".get_icon($equiped_bag_id[1][0])."\" alt=\"\" />", "$item_datasite{$equiped_bag_id[1][0]}", get_item_tooltip($equiped_bag_id[1][0]), "item_tooltip", "target=\"_blank\"");
-    $output .= "{$lang_item['bag']} I<br /><font class=\"small\">({$equiped_bag_id[1][1]} {$lang_item['slots']})</font";
+    $output .= "{$lang_item['bag']} I<br /><font class=\"small\">({$equiped_bag_id[1][1]} {$lang_item['slots']})</font>";
   }
 $output .= "</th><th>";
   if($equiped_bag_id[2]){
@@ -530,7 +530,7 @@ $output .= "</th><th>";
 $output .= "</th>
   </tr>
   <tr>";
-
+// adds equipped bag slots
   for($t = 1; $t < count($bag); $t++){
     $output .= "<td class=\"bag\" valign=\"bottom\" align=\"center\">
     <div style=\"width:".(4*43)."px;height:".(ceil($equiped_bag_id[$t][1]/4)*41)."px;\">";
@@ -559,7 +559,7 @@ $output .= "</tr>
   <tr>
     <td colspan=\"2\" class=\"bag\" align=\"center\" height=\"220px\">
     <div style=\"width:".(4*43)."px;height:".(ceil(16/4)*41)."px;\">";
-
+// inventory items
     foreach ($bag[0] as $pos => $item){
       $output .= "<div style=\"left:".($pos%4*42)."px;top:".(floor($pos/4)*41)."px;\">";
       $output .= maketooltip("<img src=\"".get_icon($item[0])."\" alt=\"\" />".($item[1] ? ($item[1]+1) : ""), "$item_datasite{$item[0]}", get_item_tooltip($item[0]), "item_tooltip", "target=\"_blank\"");
@@ -584,7 +584,7 @@ $output .= "</div>
     </td>
     <td colspan=\"2\" class=\"bank\" align=\"center\">
     <div style=\"width:".(7*43)."px;height:".(ceil(24/7)*41)."px;\">";
-
+// bank items
     foreach ($bank[0] as $pos => $item){
       $output .= "<div style=\"left:".($pos%7*43)."px;top:".(floor($pos/7)*41)."px;\">";
       $output .= maketooltip("<img src=\"".get_icon($item[0])."\" class=\"inv_icon\" alt=\"\" />", "$item_datasite{$item[0]}", get_item_tooltip($item[0]), "item_tooltip", "target=\"_blank\"");
@@ -666,11 +666,15 @@ $output .= "<td class=\"bank\"></td></tr>
           <tr><td>";
     if ($user_lvl > $owner_gmlvl){
       makebutton($lang_char['chars_acc'], "user.php?action=edit_user&amp;id=$owner_acc_id",140);
+  $output .= "</td><td>";
       makebutton($lang_char['edit_button'], "char_edit.php?id=$id",140);
+  $output .= "</td><td>";
       }
     if (($user_lvl > 0)&&(($user_lvl > $owner_gmlvl)||($owner_name == $user_name))){
       makebutton($lang_char['del_char'], "char_list.php?action=del_char_form&amp;check%5B%5D=$id",140);
+  $output .= "</td><td>";
       makebutton($lang_char['send_mail'], "mail.php?type=ingame_mail&amp;to=$char[0]",140);
+  $output .= "</td><td>";
       }
     makebutton($lang_global['back'], "javascript:window.history.back()",140);
  $output .= "</td></tr>
@@ -716,7 +720,8 @@ function char_quest(){
     $sql->connect($characters_db[$realm_id]['addr'], $characters_db[$realm_id]['user'], $characters_db[$realm_id]['pass'], $characters_db[$realm_id]['name']);
 
     $result = $sql->query("SELECT quest,status FROM character_queststatus WHERE guid =$id AND ( status = 3 OR status = 1 ) ORDER BY status DESC");
-    $output .= "<center>
+
+	$output .= "<center>
     <div id=\"tab\">
     <ul>
     <li><a href=\"char.php?id=$id\">{$lang_char['char_sheet']}</a></li>
@@ -776,18 +781,20 @@ function char_quest(){
     $output .= "</table></div><br />
     <table class=\"hidden\">
           <tr><td>";
-    if ($user_lvl > $owner_gmlvl)
-    {
-    makebutton($lang_char['chars_acc'], "user.php?action=edit_user&amp;id=$char[0]",140);
-    makebutton($lang_char['edit_button'], "char_edit.php?id=$id",140);
-    }
-    if ( ($user_lvl) && (($user_lvl > $owner_gmlvl) || ($owner_name == $user_name)) )
-    {
-    makebutton($lang_char['del_char'], "char_list.php?action=del_char_form&amp;check%5B%5D=$id",140);
-    makebutton($lang_char['send_mail'], "mail.php?type=ingame_mail&amp;to=$char[1]",140);
-    }
+    if ($user_lvl > $owner_gmlvl){
+      makebutton($lang_char['chars_acc'], "user.php?action=edit_user&amp;id=$owner_acc_id",140);
+  $output .= "</td><td>";
+      makebutton($lang_char['edit_button'], "char_edit.php?id=$id",140);
+  $output .= "</td><td>";
+      }
+    if (($user_lvl > 0)&&(($user_lvl > $owner_gmlvl)||($owner_name == $user_name))){
+      makebutton($lang_char['del_char'], "char_list.php?action=del_char_form&amp;check%5B%5D=$id",140);
+  $output .= "</td><td>";
+      makebutton($lang_char['send_mail'], "mail.php?type=ingame_mail&amp;to=$char[0]",140);
+  $output .= "</td><td>";
+      }
     makebutton($lang_global['back'], "javascript:window.history.back()",140);
-    $output .= "</td></tr>
+ $output .= "</td></tr>
         </table><br /></center>";
   }
   else
@@ -899,15 +906,19 @@ if ($sql->num_rows($result)){
     <table class=\"hidden\">
           <tr><td>";
     if ($user_lvl > $owner_gmlvl){
-      makebutton($lang_char['chars_acc'], "user.php?action=edit_user&amp;id=$char[0]",140);
+      makebutton($lang_char['chars_acc'], "user.php?action=edit_user&amp;id=$owner_acc_id",140);
+  $output .= "</td><td>";
       makebutton($lang_char['edit_button'], "char_edit.php?id=$id",140);
+  $output .= "</td><td>";
       }
     if (($user_lvl > 0)&&(($user_lvl > $owner_gmlvl)||($owner_name == $user_name))){
       makebutton($lang_char['del_char'], "char_list.php?action=del_char_form&amp;check%5B%5D=$id",140);
-      makebutton($lang_char['send_mail'], "mail.php?type=ingame_mail&amp;to=$char[1]",140);
+  $output .= "</td><td>";
+      makebutton($lang_char['send_mail'], "mail.php?type=ingame_mail&amp;to=$char[0]",140);
+  $output .= "</td><td>";
       }
     makebutton($lang_global['back'], "javascript:window.history.back()",140);
-  $output .= "</td></tr>
+ $output .= "</td></tr>
         </table><br /></center>";
 
  } else {
@@ -1060,14 +1071,18 @@ if ($sql->num_rows($result) == 1){
           <tr><td>";
     if ($user_lvl > $owner_gmlvl){
       makebutton($lang_char['chars_acc'], "user.php?action=edit_user&amp;id=$owner_acc_id",140);
+  $output .= "</td><td>";
       makebutton($lang_char['edit_button'], "char_edit.php?id=$id",140);
+  $output .= "</td><td>";
       }
     if (($user_lvl > 0)&&(($user_lvl > $owner_gmlvl)||($owner_name == $user_name))){
       makebutton($lang_char['del_char'], "char_list.php?action=del_char_form&amp;check%5B%5D=$id",140);
-      makebutton($lang_char['send_mail'], "mail.php?type=ingame_mail&amp;to=$char[1]",140);
+  $output .= "</td><td>";
+      makebutton($lang_char['send_mail'], "mail.php?type=ingame_mail&amp;to=$char[0]",140);
+  $output .= "</td><td>";
       }
     makebutton($lang_global['back'], "javascript:window.history.back()",140);
-  $output .= "</td></tr>
+ $output .= "</td></tr>
         </table><br /></center>";
 
  } else {
@@ -1182,16 +1197,20 @@ if ($sql->num_rows($result) == 1){
     $output .= "</table></div><br />
         <table class=\"hidden\">
           <tr><td>";
-        if ($user_lvl > $owner_gmlvl){
-            makebutton($lang_char['chars_acc'], "user.php?action=edit_user&amp;id=$owner_acc_id",140);
-            makebutton($lang_char['edit_button'], "char_edit.php?id=$id",140);
-            }
-        if (($user_lvl > 0)&&(($user_lvl > $owner_gmlvl)||($owner_name == $user_name))){
-            makebutton($lang_char['del_char'], "char_list.php?action=del_char_form&amp;check%5B%5D=$id",140);
-            makebutton($lang_char['send_mail'], "mail.php?type=ingame_mail&amp;to=$char[1]",140);
-            }
-        makebutton($lang_global['back'], "javascript:window.history.back()",140);
-    $output .= "</td></tr>
+    if ($user_lvl > $owner_gmlvl){
+      makebutton($lang_char['chars_acc'], "user.php?action=edit_user&amp;id=$owner_acc_id",140);
+  $output .= "</td><td>";
+      makebutton($lang_char['edit_button'], "char_edit.php?id=$id",140);
+  $output .= "</td><td>";
+      }
+    if (($user_lvl > 0)&&(($user_lvl > $owner_gmlvl)||($owner_name == $user_name))){
+      makebutton($lang_char['del_char'], "char_list.php?action=del_char_form&amp;check%5B%5D=$id",140);
+  $output .= "</td><td>";
+      makebutton($lang_char['send_mail'], "mail.php?type=ingame_mail&amp;to=$char[0]",140);
+  $output .= "</td><td>";
+      }
+    makebutton($lang_global['back'], "javascript:window.history.back()",140);
+ $output .= "</td></tr>
         </table><br /></center>";
 
  } else {
@@ -1295,16 +1314,20 @@ if ($sql->num_rows($result) == 1){
       $output .= "</div>
       <table class=\"hidden\">
           <tr><td>";
-        if ($user_lvl > $owner_gmlvl){
-            makebutton($lang_char['chars_acc'], "user.php?action=edit_user&amp;id=$owner_acc_id",140);
-            makebutton($lang_char['edit_button'], "char_edit.php?id=$id",140);
-            }
-        if (($user_lvl > 0)&&(($user_lvl > $owner_gmlvl)||($owner_name == $user_name))){
-            makebutton($lang_char['del_char'], "char_list.php?action=del_char_form&amp;check%5B%5D=$id",140);
-            makebutton($lang_char['send_mail'], "mail.php?type=ingame_mail&amp;to=$char[1]",140);
-            }
-        makebutton($lang_global['back'], "javascript:window.history.back()",140);
-    $output .= "</td></tr>
+    if ($user_lvl > $owner_gmlvl){
+      makebutton($lang_char['chars_acc'], "user.php?action=edit_user&amp;id=$owner_acc_id",140);
+  $output .= "</td><td>";
+      makebutton($lang_char['edit_button'], "char_edit.php?id=$id",140);
+  $output .= "</td><td>";
+      }
+    if (($user_lvl > 0)&&(($user_lvl > $owner_gmlvl)||($owner_name == $user_name))){
+      makebutton($lang_char['del_char'], "char_list.php?action=del_char_form&amp;check%5B%5D=$id",140);
+  $output .= "</td><td>";
+      makebutton($lang_char['send_mail'], "mail.php?type=ingame_mail&amp;to=$char[0]",140);
+  $output .= "</td><td>";
+      }
+    makebutton($lang_global['back'], "javascript:window.history.back()",140);
+ $output .= "</td></tr>
         </table><br /></center>";
  } else {
         $sql->close();

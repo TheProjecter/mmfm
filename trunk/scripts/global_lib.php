@@ -13,7 +13,7 @@ $output = "";
 
 //to avoid Strict Standards notices in php 5.1
 if (function_exists ('date_default_timezone_set') ) {
-	date_default_timezone_set('UTC');
+	date_default_timezone_set($timezone);
 }
 
 //##########################################################################################
@@ -40,7 +40,12 @@ function makebutton($xtext, $xlink, $xwidth) {
 //make javascript tooltip
 function maketooltip($text, $link, $tip, $class, $target = "target=\"_self\"") {
  global $output;
- $output .="<a style=\"padding:2px;\" href=\"$link\" $target onmouseover=\"toolTip('".addslashes($tip)."','$class')\" onmouseout=\"toolTip()\">$text</a>";
+ //COMMENTED OUT SINCE WE WANT WOWHEAD TOOLTIPS ONLY
+ //$output .="<a style=\"padding:2px;\" href=\"$link\" $target onmouseover=\"toolTip('".addslashes($tip)."','$class')\" onmouseout=\"toolTip()\">$text</a>";
+
+ //ADDED:
+ $output .="<a style=\"padding:2px;\" href=\"$link\" $target>$text</a>";
+ //ENDOF ADDED
 }
 
 //##########################################################################################
@@ -51,7 +56,14 @@ function redirect($url) {
 	exit();
 	} else die('<meta http-equiv="refresh" content="0;URL='.$url.'" />');
 }
-	
+
+//work around for MSIE and wowhead tooltip display error
+if (ereg("MSIE" , $_SERVER["HTTP_USER_AGENT"])) {
+     $tt_scrip = "";
+} else {
+     $tt_scrip = "http://www.wowhead.com/widgets/power.js";
+}
+
 //##########################################################################################
 // Generate paging navigation.
 // Original from PHPBB with some modifications to make them more simple

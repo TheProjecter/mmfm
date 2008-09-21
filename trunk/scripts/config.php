@@ -11,7 +11,7 @@
  * instead of 2 supported by version of Q.SA
  */
 
-$version = "0.11";
+$version = "0.12";
 
 //---- SQL Configuration ----
 
@@ -23,6 +23,14 @@ $version = "0.11";
 */
 $db_type = "MySQL";
 
+$mmfpm_db = Array(
+	'addr' => "127.0.0.1:3306",	//SQL server IP:port this DB located on
+	'user' => "root",			//SQL server login this DB located on
+	'pass' => "",			//SQL server pass this DB located on
+	'name' => "mmfpm",			//realmd DB name
+	'encoding' => "utf8" 		//SQL connection encoding
+	);
+
 $realm_db = Array(
 	'addr' => "127.0.0.1:3306",	//SQL server IP:port this realmd located on
 	'user' => "root",			//SQL server login this realmd located on
@@ -30,6 +38,7 @@ $realm_db = Array(
 	'name' => "realmd",			//realmd DB name
 	'encoding' => "utf8" 		//SQL connection encoding
 	);
+
 $mangos_db = Array(
 	1 => array(		//position in array must represent realmd ID
 			'id' => 1,					//Realm ID
@@ -59,7 +68,7 @@ $server = Array(	//if more than one realm used, even if they are on same system 
 			'game_port' => 8085,		//Game Server port
 			'term_type' => "SSH",		//Terminal type - ("SSH"/"Telnet")
 			'term_port' => 22,			//Terminal port
-			'rev' => "rev.5297 SD269",		//Mangos rev. used
+			'rev' => "rev. 6360",		//Mangos rev. used
 			'both_factions' => true	//Allow to see opponent faction characters. Affects only players.
 			),
 );
@@ -80,6 +89,9 @@ $smtp_cfg = array(
 
 //---- New account creation Options ----
 $disable_acc_creation = false; 	//true = Do not allow new accounts to be created
+$expansion_select = false; //true = Shows option to select expansion or classic False = no option(TBC) enabled by default
+$defaultoption = 1; //if the above is false then set what the default option will be (1 = TBC, 0 = Classic)
+$enable_captcha = true; //false = no security image check (enable for protection against 'bot' registrations)
 $send_mail_on_creation = false; //true = send mail at account creation.
 $create_acc_locked = 0; 		//if set to '1' newly created accounts will be made locked to 0.0.0.0 IP disallowing user to login.
 $validate_mail_host = false;  	//actualy make sure the mail host provided in email is valid/accessible host.
@@ -96,8 +108,9 @@ $title = "MiniManager for MaNgOs srv.";
 $itemperpage = 25;
 
 $css_template = "Sulfur"; 		//file/folder name of css tamplate to use from templates directory by default
-$language = "enUS"; 			//default site language
-$site_encoding = "iso-8859-1"; 	//default encoding
+$language = "english"; 			//default site language
+$tt_lang = "www";          //wowhead tooltip language.....choices are 'fr', 'de', 'es' (for 'en' use www)
+$timezone = "UTC";         //default timezone (use your local timezone code)
 
 //---- IRC Options ------
 $irc_cfg = array(
@@ -107,14 +120,14 @@ $irc_cfg = array(
 			);
 
 //---- External Links ----
-$item_datasite = "http://www.wowhead.com/?item=";
-$quest_datasite = "http://www.wowhead.com/?quest=";
-$creature_datasite = "http://www.wowhead.com/?npc=";
-$spell_datasite = "http://www.wowhead.com/?spell=";
-$skill_datasite = "http://www.wowhead.com/?spells=";
-$talent_datasite = "http://wowhead.com/?spell=";
+$item_datasite = "http://$tt_lang.wowhead.com/?item=";
+$quest_datasite = "http://$tt_lang.wowhead.com/?quest=";
+$creature_datasite = "http://$tt_lang.wowhead.com/?npc=";
+$spell_datasite = "http://$tt_lang.wowhead.com/?spell=";
+$skill_datasite = "http://$tt_lang.wowhead.com/?spells=";
+$talent_datasite = "http://$tt_lang.wowhead.com/?spell=";
 $talent_calculator_datasite = "http://www.worldofwarcraft.com/info/classes";
-$go_datasite = "http://www.wowhead.com/?object=";
+$go_datasite = "http://$tt_lang.wowhead.com/?object=";
 $get_icons_from_web = true; //wherever to get icons from the web in case they are missing in /img/INV dir.
 
 //---- Backup configuration ----
@@ -149,7 +162,6 @@ $menu_array = Array(
 	  array("banned.php", 'banned_list',1,0,0,0),
 	  array("cleanup.php", 'cleanup',3,0,0,0),
 	  array("stat.php", 'statistics',0,0,0,0),
-	  array("stat_on.php", 'statistics_on',0,0,0,0),
 	  array("javascript:void(0);\" onclick=\"window.open('./pomm/pomm.php', 'pomm', 'Toolbar=0, Location=0, Directories=0, Status=0, Menubar=0, Scrollbar=0, Resizable=0, Copyhistory=1, Width=784, Height=525')", 'player_map',0,0,0,0),
 	  ),
 	),
@@ -159,9 +171,9 @@ $menu_array = Array(
 	  array("ticket.php", 'tickets',1,0,0,0),
 	  array("ahstats.php", 'auctionhouse',0,0,0,0),
 	  array("events.php", 'events',0,0,0,0),
-	  array("realm.php", 'realm',0,0,0,0),
+	  array("realm.php", 'realm',3,0,0,0),
 	  array("motd.php", 'add_motd',1,0,0,0),
-	  array("mail.php", 'mail',1,0,0,0),
+	  array("mail.php", 'mail',3,0,0,0),
 	  array("irc.php", 'irc',0,0,0,0),
 	  array("instances.php", 'instances',0,0,0,0),
 	  ),
