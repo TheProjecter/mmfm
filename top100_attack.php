@@ -33,13 +33,14 @@ function top100($realmid, &$sqlr, &$sqlc)
   $all_record = (($all_record < 100) ? $all_record : 100);
 
   $result = $sqlc->query('SELECT guid, name, race, class, gender, level,
-    CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_MAX_HEALTH+1).'), " ", -1) AS UNSIGNED) AS health,
-    CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_MAX_MANA+1).'),   " ", -1) AS UNSIGNED) AS mana,
-    CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_STR+1).'), " ", -1) AS UNSIGNED) AS str,
-	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_AGI+1).'), " ", -1) AS UNSIGNED) AS agi,
-	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_STA+1).'),   " ", -1) AS UNSIGNED) AS sta,
-	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_INT+1).'),   " ", -1) AS UNSIGNED) AS intel,
-	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_SPI+1).'),   " ", -1) AS UNSIGNED) AS spi
+    CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_AP+1).'), " ", -1) AS UNSIGNED) AS ap,
+    CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_AP_MOD+1).'),   " ", -1) AS UNSIGNED) AS ap_mod,
+    CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_RANGED_AP+1).'), " ", -1) AS UNSIGNED) AS ranged_ap,
+	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_RANGED_AP_MOD+1).'), " ", -1) AS UNSIGNED) AS ranged_ap_mod,
+	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_MINRANGEDDAMAGE+1).'),   " ", -1) AS UNSIGNED) AS min_ranged_dmg,
+	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_MAXRANGEDDAMAGE+1).'),   " ", -1) AS UNSIGNED) AS max_ranged_dmg,
+	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_EXPERTISE+1).'),   " ", -1) AS UNSIGNED) AS expertise,
+	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_OFFHAND_EXPERTISE+1).'), " ", -1) AS UNSIGNED) AS off_expertise
     FROM characters ORDER BY '.$order_by.' '.$order_dir.' LIMIT '.$start.', '.$itemperpage.'');
 
   //==========================top tage navigaion starts here========================
@@ -52,7 +53,7 @@ $output .= "
             {$lang_top['misc']}
           </a>
         </li>
-        <li id=\"selected\">
+        <li>
           <a href=\"top100_stat.php\">
             {$lang_top['stats']}
           </a>
@@ -62,7 +63,7 @@ $output .= "
             {$lang_top['defense']}
           </a>
         </li>
-        <li>
+        <li id=\"selected\">
           <a href=\"top100_attack.php\">
             {$lang_top['attack']}
           </a>
@@ -124,13 +125,14 @@ $output .= "
                 <th width="1%">'.$lang_top['race'].'</th>
                 <th width="1%">'.$lang_top['class'].'</th>
                 <th width="1%"><a href="top100.php?order_by=level&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='level' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['level'].'</a></th>
-				<th width="1%"><a href="top100_stat.php?order_by=health&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='health' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['health'].'</a></th>
-				<th width="1%"><a href="top100_stat.php?order_by=mana&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='mana' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['mana'].'</a></th>
-				<th width="1%"><a href="top100_stat.php?order_by=str&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='str' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['str'].'</a></th>
-				<th width="1%"><a href="top100_stat.php?order_by=agi&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='agi' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['agi'].'</a></th>
-				<th width="1%"><a href="top100_stat.php?order_by=sta&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='sta' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['sta'].'</a></th>
-				<th width="1%"><a href="top100_stat.php?order_by=intel&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='intel' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['intel'].'</a></th>
-				<th width="1%"><a href="top100_stat.php?order_by=spi&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='spi' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['spi'].'</a></th>
+				<th width="1%"><a href="top100_attack.php?order_by=ap&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='ap' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['ap'].'</a></th>
+				<th width="1%"><a href="top100_attack.php?order_by=ap_mod&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='ap_mod' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['ap_mod'].'</a></th>
+				<th width="1%"><a href="top100_attack.php?order_by=ranged_ap&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='ranged_ap' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['ranged_ap'].'</a></th>
+				<th width="1%"><a href="top100_attack.php?order_by=ranged_ap_mod&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='ranged_ap_mod' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['ranged_ap_mod'].'</a></th>
+				<th width="1%"><a href="top100_attack.php?order_by=min_ranged_dmg&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='min_ranged_dmg' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['min_ranged_dmg'].'</a></th>
+				<th width="1%"><a href="top100_attack.php?order_by=max_ranged_dmg&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='max_ranged_dmg' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['max_ranged_dmg'].'</a></th>
+				<th width="1%"><a href="top100_attack.php?order_by=expertise&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='expertise' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['expertise'].'</a></th>
+				<th width="1%"><a href="top100_attack.php?order_by=off_expertise&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='off_expertise' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['off_expertise'].'</a></th>
               </tr>';
   for ($i=0; $i<$itemperpage; ++$i)
   {
@@ -142,13 +144,14 @@ $output .= "
                 <td><img src="img/c_icons/'.$char['race'].'-'.$char['gender'].'.gif" alt="'.char_get_race_name($char['race']).'" onmousemove="toolTip(\''.char_get_race_name($char['race']).'\', \'item_tooltip\')" onmouseout="toolTip()" /></td>
                 <td><img src="img/c_icons/'.$char['class'].'.gif" alt="'.char_get_class_name($char['class']).'" onmousemove="toolTip(\''.char_get_class_name($char['class']).'\', \'item_tooltip\')" onmouseout="toolTip()" /></td>
                 <td>'.char_get_level_color($char['level']).'</td>
-				<td>'.$char['health'].'</td>
-                <td>'.$char['mana'].'</td>
-                <td>'.$char['str'].'</td>
-				<td>'.$char['agi'].'</td>
-				<td>'.$char['sta'].'</td>
-				<td>'.$char['intel'].'</td>
-				<td>'.$char['spi'].'</td>
+				<td>'.$char['ap'].'</td>
+                <td>'.$char['ap_mod'].'</td>
+                <td>'.$char['ranged_ap'].'</td>
+				<td>'.$char['ranged_ap_mod'].'</td>
+				<td>'.$char['min_ranged_dmg'].'</td>
+				<td>'.$char['max_ranged_dmg'].'</td>
+				<td>'.$char['expertise'].'</td>
+				<td>'.$char['off_expertise'].'</td>
               </tr>';
   }
   $output .= '

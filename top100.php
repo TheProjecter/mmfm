@@ -53,6 +53,16 @@ $output .= "
           </a>
         </li>
         <li>
+          <a href=\"top100_defense.php\">
+            {$lang_top['defense']}
+          </a>
+        </li>
+        <li>
+          <a href=\"top100_attack.php\">
+            {$lang_top['attack']}
+          </a>
+        </li>
+        <li>
           <a href=\"top100_pvp.php\">
             {$lang_top['pvp']}
           </a>
