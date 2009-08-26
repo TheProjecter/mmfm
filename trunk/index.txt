@@ -1,0 +1,47 @@
+right 25%
+center 50%
+left 25%
+
+Right column
+
+login block
+- like login.php
+- register - login/logout - password
+
+realmlist block
+- either option to set it, or force ppl to edit default realmlist.wtf that we may add including game version to display
+
+online check block
+- listing servers listening to game port - link from each server(if multi server) to online.php 
+- we should add config to relmd port to check login server
+
+
+online players block
+- displaying total online, horde and alliance per realm
+
+
+Center Block
+
+- to MOTD, and future integration with forum to post news for example
+
+
+Right Column
+
+General info Block
+// was thinking on info we display on stat
+- total n# of accs
+- total n of Gms
+-- per realm
+   total n# of chars
+
+Guild Block
+total n# of guilds, horde and alliance
+
+Arena Team Block
+- same as guild block
+
+Auction House Block
+- to start just n# of items
+
+
+
