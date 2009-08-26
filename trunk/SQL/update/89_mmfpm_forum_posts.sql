@@ -1,1 +1,0 @@
-RENAME TABLE posts TO forum_posts
