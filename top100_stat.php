@@ -49,7 +49,7 @@ $output .= "
       <ul>
         <li>
           <a href=\"top100.php\">
-            {$lang_top['misc']}
+            {$lang_top['general']}
           </a>
         </li>
         <li id=\"selected\">
@@ -65,6 +65,16 @@ $output .= "
         <li>
           <a href=\"top100_attack.php\">
             {$lang_top['attack']}
+          </a>
+        </li>
+        <li>
+          <a href=\"top100_resist.php\">
+            {$lang_top['resist']}
+          </a>
+        </li>
+        <li>
+          <a href=\"top100_crit_hit.php\">
+            {$lang_top['crit_hit']}
           </a>
         </li>
         <li>
@@ -92,7 +102,7 @@ $output .= "
                 <td colspan="2" align="left">';
                   makebutton('View', 'javascript:do_submit(\'form'.$realm_id.'\',0)', 130);
       $output .= '
-                  <form action="top100.php" method="get" name="form'.$realm_id.'">
+                  <form action="top100_stat.php" method="get" name="form'.$realm_id.'">
                     Number of Realms :
                     <input type="hidden" name="action" value="realms" />
                     <select name="n_realms">';
@@ -110,7 +120,7 @@ $output .= "
               <tr>
                 <td align="right">Total: '.$all_record.'</td>
                 <td align="right" width="25%">';
-  $output .= generate_pagination('top100.php?order_by='.$order_by.'&amp;dir='.(($dir) ? 0 : 1).'', $all_record, $itemperpage, $start);
+  $output .= generate_pagination('top100_stat.php?order_by='.$order_by.'&amp;dir='.(($dir) ? 0 : 1).'', $all_record, $itemperpage, $start);
   $output .= '
                 </td>
               </tr>
@@ -123,7 +133,7 @@ $output .= "
                 <th width="1%">'.$lang_top['name'].'</th>
                 <th width="1%">'.$lang_top['race'].'</th>
                 <th width="1%">'.$lang_top['class'].'</th>
-                <th width="1%"><a href="top100.php?order_by=level&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='level' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['level'].'</a></th>
+                <th width="1%"><a href="top100_stat.php?order_by=level&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='level' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['level'].'</a></th>
 				<th width="1%"><a href="top100_stat.php?order_by=health&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='health' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['health'].'</a></th>
 				<th width="1%"><a href="top100_stat.php?order_by=mana&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='mana' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['mana'].'</a></th>
 				<th width="1%"><a href="top100_stat.php?order_by=str&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='str' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['str'].'</a></th>
@@ -154,7 +164,7 @@ $output .= "
   $output .= '
               <tr>
                 <td colspan="12" class="hidden" align="right" width="25%">';
-  $output .= generate_pagination('top100.php?order_by='.$order_by.'&amp;dir='.(($dir) ? 0 : 1).'', $all_record, $itemperpage, $start);
+  $output .= generate_pagination('top100_stat.php?order_by='.$order_by.'&amp;dir='.(($dir) ? 0 : 1).'', $all_record, $itemperpage, $start);
   unset($all_record);
   $output .= '
                 </td>

@@ -32,7 +32,7 @@ function top100($realmid, &$sqlr, &$sqlc)
   $all_record = $sqlc->result($result, 0);
   $all_record = (($all_record < 100) ? $all_record : 100);
 
-  $result = $sqlc->query('SELECT guid, name, race, class, gender, level,
+  $result = $sqlc->query('SELECT guid, name, race, class, gender, level, data,
 	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_ARMOR+1).'), " ", -1) AS UNSIGNED) AS armor,
 	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_BLOCK+1).'), " ", -1) AS UNSIGNED) AS block,
 	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_DODGE+1).'), " ", -1) AS UNSIGNED) AS dodge,
@@ -40,6 +40,16 @@ function top100($realmid, &$sqlr, &$sqlc)
 	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_RESILIENCE+1).'), " ", -1) AS UNSIGNED) AS resilience
     FROM characters ORDER BY '.$order_by.' '.$order_dir.' LIMIT '.$start.', '.$itemperpage.'');
 
+    //  $char = $sqlc->fetch_assoc($result);
+    //  $char_data = explode(' ',$char['data']);
+	  
+    //  $block       = unpack('f', pack('L', $char_data[CHAR_DATA_OFFSET_BLOCK]));
+    //  $block       = round($block[1],2);
+    //  $dodge       = unpack('f', pack('L', $char_data[CHAR_DATA_OFFSET_DODGE]));
+    //  $dodge       = round($dodge[1],2);
+    //  $parry       = unpack('f', pack('L', $char_data[CHAR_DATA_OFFSET_PARRY]));
+    //  $parry       = round($parry[1],2);
+	
   //==========================top tage navigaion starts here========================
 $output .= "
   <center>
@@ -47,7 +57,7 @@ $output .= "
       <ul>
         <li>
           <a href=\"top100.php\">
-            {$lang_top['misc']}
+            {$lang_top['general']}
           </a>
         </li>
         <li>
@@ -63,6 +73,16 @@ $output .= "
         <li>
           <a href=\"top100_attack.php\">
             {$lang_top['attack']}
+          </a>
+        </li>
+        <li>
+          <a href=\"top100_resist.php\">
+            {$lang_top['resist']}
+          </a>
+        </li>
+        <li>
+          <a href=\"top100_crit_hit.php\">
+            {$lang_top['crit_hit']}
           </a>
         </li>
         <li>
@@ -90,7 +110,7 @@ $output .= "
                 <td colspan="2" align="left">';
                   makebutton('View', 'javascript:do_submit(\'form'.$realm_id.'\',0)', 130);
       $output .= '
-                  <form action="top100.php" method="get" name="form'.$realm_id.'">
+                  <form action="top100_defense.php" method="get" name="form'.$realm_id.'">
                     Number of Realms :
                     <input type="hidden" name="action" value="realms" />
                     <select name="n_realms">';
@@ -108,7 +128,7 @@ $output .= "
               <tr>
                 <td align="right">Total: '.$all_record.'</td>
                 <td align="right" width="25%">';
-  $output .= generate_pagination('top100.php?order_by='.$order_by.'&amp;dir='.(($dir) ? 0 : 1).'', $all_record, $itemperpage, $start);
+  $output .= generate_pagination('top100_defense.php?order_by='.$order_by.'&amp;dir='.(($dir) ? 0 : 1).'', $all_record, $itemperpage, $start);
   $output .= '
                 </td>
               </tr>
@@ -121,7 +141,7 @@ $output .= "
                 <th width="1%">'.$lang_top['name'].'</th>
                 <th width="1%">'.$lang_top['race'].'</th>
                 <th width="1%">'.$lang_top['class'].'</th>
-                <th width="1%"><a href="top100.php?order_by=level&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='level' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['level'].'</a></th>
+                <th width="1%"><a href="top100_defense.php?order_by=level&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='level' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['level'].'</a></th>
 				<th width="1%"><a href="top100_defense.php?order_by=armor&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='armor' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['armor'].'</a></th>
 				<th width="1%"><a href="top100_defense.php?order_by=block&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='block' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['block'].'</a></th>
 				<th width="1%"><a href="top100_defense.php?order_by=dodge&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='dodge' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['dodge'].'</a></th>
@@ -148,7 +168,7 @@ $output .= "
   $output .= '
               <tr>
                 <td colspan="12" class="hidden" align="right" width="25%">';
-  $output .= generate_pagination('top100.php?order_by='.$order_by.'&amp;dir='.(($dir) ? 0 : 1).'', $all_record, $itemperpage, $start);
+  $output .= generate_pagination('top100_defense.php?order_by='.$order_by.'&amp;dir='.(($dir) ? 0 : 1).'', $all_record, $itemperpage, $start);
   unset($all_record);
   $output .= '
                 </td>

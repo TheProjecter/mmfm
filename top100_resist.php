@@ -3,7 +3,6 @@
 
 require_once 'header.php';
 require_once 'libs/char_lib.php';
-valid_login($action_permission['read']);
 
 function top100($realmid, &$sqlr, &$sqlc)
 {
@@ -33,16 +32,21 @@ function top100($realmid, &$sqlr, &$sqlc)
   $all_record = $sqlc->result($result, 0);
   $all_record = (($all_record < 100) ? $all_record : 100);
 
-  $result = $sqlc->query('SELECT guid, name, race, class, totaltime, online, gender, level, money,
-    CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_GUILD_ID+1).'),     " ", -1) AS UNSIGNED) as gname
+  $result = $sqlc->query('SELECT guid, name, race, class, gender, level,
+    CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_RES_HOLY+1).'), " ", -1) AS UNSIGNED) AS holy,
+    CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_RES_FIRE+1).'),   " ", -1) AS UNSIGNED) AS fire,
+    CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_RES_NATURE+1).'), " ", -1) AS UNSIGNED) AS nature,
+	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_RES_FROST+1).'), " ", -1) AS UNSIGNED) AS frost,
+	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_RES_SHADOW+1).'),   " ", -1) AS UNSIGNED) AS shadow,
+	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_RES_ARCANE+1).'),   " ", -1) AS UNSIGNED) AS arcane
     FROM characters ORDER BY '.$order_by.' '.$order_dir.' LIMIT '.$start.', '.$itemperpage.'');
-
+	
   //==========================top tage navigaion starts here========================
 $output .= "
   <center>
     <div id=\"tab\">
       <ul>
-        <li id=\"selected\">
+        <li>
           <a href=\"top100.php\">
             {$lang_top['general']}
           </a>
@@ -62,7 +66,7 @@ $output .= "
             {$lang_top['attack']}
           </a>
         </li>
-        <li>
+        <li id=\"selected\">
           <a href=\"top100_resist.php\">
             {$lang_top['resist']}
           </a>
@@ -81,8 +85,9 @@ $output .= "
     </div>
     <div id=\"tab_content\">
 ";
-
+  
   $output .= '
+          <script type="text/javascript" src="js/check.js"></script>
           <center>
             <table class="top_hidden">';
   if($developer_test_mode && $multi_realm_mode)
@@ -96,7 +101,7 @@ $output .= "
                 <td colspan="2" align="left">';
                   makebutton('View', 'javascript:do_submit(\'form'.$realm_id.'\',0)', 130);
       $output .= '
-                  <form action="top100.php" method="get" name="form'.$realm_id.'">
+                  <form action="top100_resist.php" method="get" name="form'.$realm_id.'">
                     Number of Realms :
                     <input type="hidden" name="action" value="realms" />
                     <select name="n_realms">';
@@ -114,7 +119,7 @@ $output .= "
               <tr>
                 <td align="right">Total: '.$all_record.'</td>
                 <td align="right" width="25%">';
-  $output .= generate_pagination('top100.php?order_by='.$order_by.'&amp;dir='.(($dir) ? 0 : 1).'', $all_record, $itemperpage, $start);
+  $output .= generate_pagination('top100_resist.php?order_by='.$order_by.'&amp;dir='.(($dir) ? 0 : 1).'', $all_record, $itemperpage, $start);
   $output .= '
                 </td>
               </tr>
@@ -127,44 +132,36 @@ $output .= "
                 <th width="1%">'.$lang_top['name'].'</th>
                 <th width="1%">'.$lang_top['race'].'</th>
                 <th width="1%">'.$lang_top['class'].'</th>
-                <th width="1%"><a href="top100.php?order_by=level&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='level' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['level'].'</a></th>
-                <th width="10%">'.$lang_top['guild'].'</th>
-                <th width="10%"><a href="top100.php?order_by=money&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='money' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['money'].'</a></th>
-                <th width="10%"><a href="top100.php?order_by=totaltime&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='totaltime' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['time_played'].'</a></th>
-                <th width="1%">'.$lang_top['online'].'</th>
+                <th width="1%"><a href="top100_resist.php?order_by=level&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='level' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['level'].'</a></th>
+				<th width="1%"><a href="top100_resist.php?order_by=holy&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='holy' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['holy'].'</a></th>
+				<th width="1%"><a href="top100_resist.php?order_by=fire&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='fire' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['fire'].'</a></th>
+				<th width="1%"><a href="top100_resist.php?order_by=nature&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='nature' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['nature'].'</a></th>
+				<th width="1%"><a href="top100_resist.php?order_by=frost&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='frost' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['frost'].'</a></th>
+				<th width="1%"><a href="top100_resist.php?order_by=shadow&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='shadow' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['shadow'].'</a></th>
+				<th width="1%"><a href="top100_resist.php?order_by=arcane&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='arcane' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['arcane'].'</a></th>
               </tr>';
   for ($i=0; $i<$itemperpage; ++$i)
   {
     $char = $sqlc->fetch_assoc($result);
-    $guild_name = $sqlc->result($sqlc->query('SELECT name FROM guild WHERE guildid = '.$char['gname'].''), 0);
 
-    $days  = floor(round($char['totaltime'] / 3600)/24);
-    $hours = round($char['totaltime'] / 3600) - ($days * 24);
-    $time = '';
-    if ($days)
-      $time .= $days.' days ';
-    if ($hours)
-      $time .= $hours.' hours';
     $output .= '
               <tr valign="top">
                 <td><a href="char.php?id='.$char['guid'].'&amp;realm='.$realm_id.'">'.htmlentities($char['name']).'</a></td>
                 <td><img src="img/c_icons/'.$char['race'].'-'.$char['gender'].'.gif" alt="'.char_get_race_name($char['race']).'" onmousemove="toolTip(\''.char_get_race_name($char['race']).'\', \'item_tooltip\')" onmouseout="toolTip()" /></td>
                 <td><img src="img/c_icons/'.$char['class'].'.gif" alt="'.char_get_class_name($char['class']).'" onmousemove="toolTip(\''.char_get_class_name($char['class']).'\', \'item_tooltip\')" onmouseout="toolTip()" /></td>
                 <td>'.char_get_level_color($char['level']).'</td>
-                <td><a href="guild.php?action=view_guild&amp;realm='.$realm_id.'&amp;error=3&amp;id='.$char['gname'].'">'.htmlentities($guild_name).'</a></td>
-                <td>
-                  '.substr($char['money'],  0, -4).'<img src="img/gold.gif" alt="" align="middle" />
-                  '.substr($char['money'], -4,  2).'<img src="img/silver.gif" alt="" align="middle" />
-                  '.substr($char['money'], -2).'<img src="img/copper.gif" alt="" align="middle" />
-                </td>
-                <td>'.$time.'</td>
-                <td>'.($char['online'] ? '<img src="img/up.gif" alt="" />' : '-').'</td>
+				<td>'.$char['holy'].'</td>
+                <td>'.$char['fire'].'</td>
+                <td>'.$char['nature'].'</td>
+				<td>'.$char['frost'].'</td>
+				<td>'.$char['shadow'].'</td>
+				<td>'.$char['arcane'].'</td>
               </tr>';
   }
   $output .= '
               <tr>
                 <td colspan="12" class="hidden" align="right" width="25%">';
-  $output .= generate_pagination('top100.php?order_by='.$order_by.'&amp;dir='.(($dir) ? 0 : 1).'', $all_record, $itemperpage, $start);
+  $output .= generate_pagination('top100_resist.php?order_by='.$order_by.'&amp;dir='.(($dir) ? 0 : 1).'', $all_record, $itemperpage, $start);
   unset($all_record);
   $output .= '
                 </td>
