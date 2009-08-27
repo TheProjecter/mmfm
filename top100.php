@@ -49,11 +49,11 @@ function top100($realmid, &$sqlr, &$sqlc)
     CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_STA+1).'),   " ", -1) AS UNSIGNED) AS sta,
     CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_INT+1).'),   " ", -1) AS UNSIGNED) AS intel,
     CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_SPI+1).'),   " ", -1) AS UNSIGNED) AS spi,
-	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_ARMOR+1).'), " ", -1) AS UNSIGNED) AS armor,
-	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_BLOCK+1).'), " ", -1) AS UNSIGNED) AS block,
-	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_DODGE+1).'), " ", -1) AS UNSIGNED) AS dodge,
-	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_PARRY+1).'), " ", -1) AS UNSIGNED) AS parry,
-	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_RESILIENCE+1).'), " ", -1) AS UNSIGNED) AS resilience
+    CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_ARMOR+1).'), " ", -1) AS UNSIGNED) AS armor,
+    CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_BLOCK+1).'), " ", -1) AS UNSIGNED) AS block,
+    CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_DODGE+1).'), " ", -1) AS UNSIGNED) AS dodge,
+    CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_PARRY+1).'), " ", -1) AS UNSIGNED) AS parry,
+    CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_RESILIENCE+1).'), " ", -1) AS UNSIGNED) AS resilience
     FROM characters ORDER BY '.$order_by.' '.$order_dir.' LIMIT '.$start.', '.$itemperpage.'');
 
 
@@ -72,24 +72,23 @@ function top100($realmid, &$sqlr, &$sqlc)
                     '.$lang_top['stats'].'
                   </a>
                 </li>
-                <li>
                 <li'.(($type == 'defense') ? ' id="selected"' : '' ).'>
                   <a href="top100.php?type=defense">
                     '.$lang_top['defense'].'
                   </a>
                 </li>
                 <li>
-                  <a href=\"top100_attack.php\">
+                  <a href="top100_attack.php">
                     '.$lang_top['attack'].'
                   </a>
                 </li>
                 <li>
-                  <a href=\"top100_resist.php\">
+                  <a href="top100_resist.php">
                     '.$lang_top['resist'].'
                   </a>
                 </li>
                 <li>
-                  <a href=\"top100_crit_hit.php\">
+                  <a href="top100_crit_hit.php">
                     '.$lang_top['crit_hit'].'
                   </a>
                 </li>
@@ -113,7 +112,7 @@ function top100($realmid, &$sqlr, &$sqlc)
                 <td colspan="2" align="left">';
                   makebutton('View', 'javascript:do_submit(\'form'.$realm_id.'\',0)', 130);
       $output .= '
-                  <form action="top100.php?type='.$type.'" method="get" name="form'.$realm_id.'">
+                  <form action="top100.php?type='.$type.'" method="post" name="form'.$realm_id.'">
                     Number of Realms :
                     <input type="hidden" name="action" value="realms" />
                     <select name="n_realms">';
@@ -167,11 +166,11 @@ function top100($realmid, &$sqlr, &$sqlc)
   elseif ($type == 'defense')
   {
     $output .= '
-				<th width="8%"><a href="top100.php?type='.$type.'&amp;order_by=armor&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='armor' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['armor'].'</a></th>
-				<th width="8%"><a href="top100.php?type='.$type.'&amp;order_by=block&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='block' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['block'].'</a></th>
-				<th width="8%"><a href="top100.php?type='.$type.'&amp;order_by=dodge&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='dodge' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['dodge'].'</a></th>
-				<th width="8%"><a href="top100.php?type='.$type.'&amp;order_by=parry&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='parry' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['parry'].'</a></th>
-				<th width="8%"><a href="top100.php?type='.$type.'&amp;order_by=resilience&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='resilience' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['resilience'].'</a></th>;
+                <th width="10%"><a href="top100.php?type='.$type.'&amp;order_by=armor&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='armor' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['armor'].'</a></th>
+                <th width="10%"><a href="top100.php?type='.$type.'&amp;order_by=block&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='block' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['block'].'</a></th>
+                <th width="10%"><a href="top100.php?type='.$type.'&amp;order_by=dodge&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='dodge' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['dodge'].'</a></th>
+                <th width="10%"><a href="top100.php?type='.$type.'&amp;order_by=parry&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='parry' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['parry'].'</a></th>
+                <th width="15%"><a href="top100.php?type='.$type.'&amp;order_by=resilience&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='resilience' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['resilience'].'</a></th>';
   }
   $output .= '
               </tr>';
@@ -217,12 +216,19 @@ function top100($realmid, &$sqlr, &$sqlc)
     }
     elseif ($type == 'defense')
     {
+      $block = unpack('f', pack('L', $char['block']));
+      $block = round($block[1],2);
+      $dodge = unpack('f', pack('L', $char['dodge']));
+      $dodge = round($dodge[1],2);
+      $parry = unpack('f', pack('L', $char['parry']));
+      $parry = round($parry[1],2);
+
       $output .= '
-				<td>'.$char['armor'].'</td>
-                <td>'.$char['block'].'</td>
-                <td>'.$char['dodge'].'</td>
-				<td>'.$char['parry'].'</td>
-				<td>'.$char['resilience'].'</td>;
+                <td>'.$char['armor'].'</td>
+                <td>'.$block.'%</td>
+                <td>'.$dodge.'%</td>
+                <td>'.$parry.'%</td>
+                <td>'.$char['resilience'].'</td>';
     }
     $output .= '
               </tr>';
@@ -234,7 +240,7 @@ function top100($realmid, &$sqlr, &$sqlc)
     $output .= '8';
   elseif ($type == 'stat')
     $output .= '11';
-  elseif ($type == 'stat')
+  elseif ($type == 'defense')
     $output .= '9';
 
   $output .= '" class="hidden" align="right" width="25%">';
@@ -272,13 +278,13 @@ $lang_top = lang_top();
 //$output .= '
 //          </div>';
 
-$action = (isset($_GET['action'])) ? $_GET['action'] : NULL;
+$action = (isset($_POST['action'])) ? $_POST['action'] : NULL;
 
 if ('realms' == $action)
 {
-  if (isset($_GET['n_realms']))
+  if (isset($_POST['n_realms']))
   {
-    $n_realms = $_GET['n_realms'];
+    $n_realms = $_POST['n_realms'];
 
     $realms = $sqlr->query('SELECT id, name FROM realmlist LIMIT 10');
 
