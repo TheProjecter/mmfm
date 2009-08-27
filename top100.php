@@ -32,7 +32,7 @@ function top100($realmid, &$sqlr, &$sqlc)
   $dir = ($dir) ? 0 : 1;
   //==========================$_GET and SECURE end========================
 
-  $type_list = array('level', 'stat');
+  $type_list = array('level', 'stat', 'defense');
   if (in_array($type, $type_list));
     else $type = 'level';
 
@@ -48,7 +48,12 @@ function top100($realmid, &$sqlr, &$sqlc)
     CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_AGI+1).'), " ", -1) AS UNSIGNED) AS agi,
     CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_STA+1).'),   " ", -1) AS UNSIGNED) AS sta,
     CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_INT+1).'),   " ", -1) AS UNSIGNED) AS intel,
-    CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_SPI+1).'),   " ", -1) AS UNSIGNED) AS spi
+    CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_SPI+1).'),   " ", -1) AS UNSIGNED) AS spi,
+	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_ARMOR+1).'), " ", -1) AS UNSIGNED) AS armor,
+	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_BLOCK+1).'), " ", -1) AS UNSIGNED) AS block,
+	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_DODGE+1).'), " ", -1) AS UNSIGNED) AS dodge,
+	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_PARRY+1).'), " ", -1) AS UNSIGNED) AS parry,
+	CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(data, " ", '.(CHAR_DATA_OFFSET_RESILIENCE+1).'), " ", -1) AS UNSIGNED) AS resilience
     FROM characters ORDER BY '.$order_by.' '.$order_dir.' LIMIT '.$start.', '.$itemperpage.'');
 
 
@@ -68,7 +73,8 @@ function top100($realmid, &$sqlr, &$sqlc)
                   </a>
                 </li>
                 <li>
-                  <a href="top100_defense.php">
+                <li'.(($type == 'defense') ? ' id="selected"' : '' ).'>
+                  <a href="top100.php?type=defense">
                     '.$lang_top['defense'].'
                   </a>
                 </li>
@@ -158,6 +164,15 @@ function top100($realmid, &$sqlr, &$sqlc)
                 <th width="8%"><a href="top100.php?type='.$type.'&amp;order_by=intel&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='intel' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['intel'].'</a></th>
                 <th width="8%"><a href="top100.php?type='.$type.'&amp;order_by=spi&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='spi' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['spi'].'</a></th>';
   }
+  elseif ($type == 'defense')
+  {
+    $output .= '
+				<th width="8%"><a href="top100.php?type='.$type.'&amp;order_by=armor&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='armor' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['armor'].'</a></th>
+				<th width="8%"><a href="top100.php?type='.$type.'&amp;order_by=block&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='block' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['block'].'</a></th>
+				<th width="8%"><a href="top100.php?type='.$type.'&amp;order_by=dodge&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='dodge' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['dodge'].'</a></th>
+				<th width="8%"><a href="top100.php?type='.$type.'&amp;order_by=parry&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='parry' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['parry'].'</a></th>
+				<th width="8%"><a href="top100.php?type='.$type.'&amp;order_by=resilience&amp;start='.$start.'&amp;dir='.$dir.'"'.($order_by=='resilience' ? ' class="'.$order_dir.'"' : '').'>'.$lang_top['resilience'].'</a></th>;
+  }
   $output .= '
               </tr>';
   while($char = $sqlc->fetch_assoc($result))
@@ -200,6 +215,15 @@ function top100($realmid, &$sqlr, &$sqlc)
                 <td>'.$char['intel'].'</td>
                 <td>'.$char['spi'].'</td>';
     }
+    elseif ($type == 'defense')
+    {
+      $output .= '
+				<td>'.$char['armor'].'</td>
+                <td>'.$char['block'].'</td>
+                <td>'.$char['dodge'].'</td>
+				<td>'.$char['parry'].'</td>
+				<td>'.$char['resilience'].'</td>;
+    }
     $output .= '
               </tr>';
   }
@@ -210,6 +234,8 @@ function top100($realmid, &$sqlr, &$sqlc)
     $output .= '8';
   elseif ($type == 'stat')
     $output .= '11';
+  elseif ($type == 'stat')
+    $output .= '9';
 
   $output .= '" class="hidden" align="right" width="25%">';
   $output .= generate_pagination('top100.php?type='.$type.'&amp;order_by='.$order_by.'&amp;dir='.(($dir) ? 0 : 1).'', $all_record, $itemperpage, $start);
