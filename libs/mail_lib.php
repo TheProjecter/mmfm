@@ -62,6 +62,7 @@ $check_state = Array
   "0" => "Not Read",
   "1" => "Read",
   "4" => "Auction Checked",
+  "5" => "Read - Auction Checked",
   "8" => "COD Pay Checked",
   "16" => "Returned Checked",
 );
