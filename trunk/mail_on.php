@@ -1,12 +1,10 @@
 <?php
 
 
-require_once("header.php");
-require_once("scripts/mail_lib.php");
-require_once("scripts/get_lib.php");
-valid_login($action_permission['update']);
-
-/*--------------------------------------------------*/
+require_once 'header.php';
+require_once 'libs/mail_lib.php';
+require_once 'libs/item_lib.php';
+require_once 'scripts/get_lib.php';
 
 function do_search()
 {
@@ -137,10 +135,8 @@ function search() {
  $dir = (isset($_GET['dir'])) ? $sql->quote_smart($_GET['dir']) : 1;
  $order_dir = ($dir) ? "ASC" : "DESC";
  $dir = ($dir) ? 0 : 1;
- $total_found = $sql->num_rows($query);
- $this_page = $sql->num_rows($query);
- $all_record = $sql->result($query_1,0);
- $temp = $sql->query("SELECT guid FROM `characters` WHERE name ='$search_value'");
+
+ $temp = $sql->query("SELECT guid FROM `characters` WHERE name like '%$search_value%'");
  $search_value = $sql->result($temp, 0, 'guid');
 
  $query_1 = $sql->query("SELECT count(*) FROM `mail`");
@@ -150,6 +146,9 @@ function search() {
             INNER JOIN mail_items b ON a.id = b.mail_id
             WHERE $search_by = $search_value
             ORDER BY $order_by $order_dir LIMIT $start, $itemperpage");
+
+ $this_page = $sql->num_rows($query);
+ $all_record = $sql->result($query_1,0);
 
  $total_found = $sql->num_rows($query);
 //==========================top page navigation starts here========================
@@ -165,7 +164,7 @@ $output .="<center><table class=\"top_hidden\">
                 <option value=\"sender\">Sender</option>
                 <option value=\"receiver\">Receiver</option>
             </select></form></td><td>";
-        makebutton($lang_global['search'], "java script:do_submit()",80);
+        makebutton($lang_global['search'], "javascript:do_submit()",80);
 $output .= "</td></tr></table>
             <td align=\"right\">";
 $output .= generate_pagination("mail_on.php?action=search&amp;order_by=$order_by&amp;dir=".!$dir, $all_record, $itemperpage, $start);
