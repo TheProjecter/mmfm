@@ -18,11 +18,12 @@ $tables_backup_characters = Array
   'arena_team_member',
   'arena_team_stats',
   'auctionhouse',
-  'account_data',
+  'character_account_data',
   'character_achievement',
   'character_achievement_progress',
   'character_action',
   'character_aura',
+  'character_battleground_data',
   'character_declinedname',
   'character_equipmentsets',
   'character_gifts',
@@ -66,6 +67,7 @@ $tables_backup_characters = Array
 
 $tables_backup_characters_trinity = Array
 (
+  'account_data',
   'arena_team',
   'arena_team_member',
   'arena_team_stats',
@@ -74,9 +76,11 @@ $tables_backup_characters_trinity = Array
   'character_achievement_progress',
   'character_action',
   'character_aura',
+  'character_battleground_data',
   'character_declinedname',
   'character_equipmentsets',
   'character_gifts',
+  'character_glyphs',
   'character_homebind',
   'character_instance',
   'character_inventory',
@@ -125,7 +129,7 @@ $tab_del_user_realmd = Array
 
 $tab_del_user_char = Array
 (
-    Array('account_data','account'),
+    Array('character_account_data','guid'),
 );
 
 //list of tables in realmd db you need to backup data on single user backup
@@ -137,11 +141,12 @@ $tab_del_user_characters = Array
 (
   Array('arena_team_member','guid'),
   Array('auctionhouse','itemowner'),
-  Array('account_data','account'),
+  Array('character_account_data','guid'),
   Array('character_achievement','guid'),
   Array('character_achievement_progress','guid'),
   Array('character_action','guid'),
   Array('character_aura','guid'),
+  Array('character_battleground_data','guid'),
   Array('character_declinedname','guid'),
   Array('character_equipmentsets','guid'),
   Array('character_gifts','guid'),
@@ -183,15 +188,18 @@ $tab_backup_user_characters = $tab_del_user_characters;
 
 $tab_del_user_characters_trinity = Array
 (
+  Array('account_data','account'),
   Array('arena_team_member','guid'),
   Array('auctionhouse','itemowner'),
   Array('character_achievement','guid'),
   Array('character_achievement_progress','guid'),
   Array('character_action','guid'),
   Array('character_aura','guid'),
+  Array('character_battleground_data','guid'),
   Array('character_declinedname','guid'),
   Array('character_equipmentsets','guid'),
   Array('character_gifts','guid'),
+  Array('character_glyphs','guid'),
   Array('character_homebind','guid'),
   Array('character_instance','guid'),
   Array('character_inventory','guid'),
