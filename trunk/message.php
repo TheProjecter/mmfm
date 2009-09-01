@@ -53,7 +53,7 @@ function main()
 
 function check()
 {
-  global $output, $realm_id, $server;
+  global $output, $realm_id, $server, $lang_telnet;
 
   $telnet = new telnet_lib();
   $result = $telnet->Connect($server[$realm_id]['addr'], $server[$realm_id]['telnet_port'], $server[$realm_id]['telnet_user'], $server[$realm_id]['telnet_pass']);
@@ -63,13 +63,13 @@ function check()
     redirect('message.php?action=main');
   }
   elseif (1 == $result)
-    $mess_str = 'Connect failed: Unable to open network connection, please check your config.';
+    $mess_str = {$lang_telnet['unable']};
   elseif (2 == $result)
-    $mess_str = 'Connect failed: Unknown host, please check your config.';
+    $mess_str = {$lang_telnet['unknown_host']};
   elseif (3 == $result)
-    $mess_str = 'Connect failed: Login failed, please check your config.';
+    $mess_str = {$lang_telnet['login_failed']};
   elseif (4 == $result)
-    $mess_str = 'Connect failed: Your PHP version does not support PHP Telnet, please check your config.';
+    $mess_str = {$lang_telnet['not_supported']};
 
   unset($result);
   unset($telnet);
@@ -80,7 +80,7 @@ function check()
 
 function send(&$sqlc)
 {
-  global $realm_id, $server;
+  global $realm_id, $server, $lang_telnet;
 
   if (empty($_POST['msg'])) redirect('message.php?action=result&mess=Empty Fields');
 
@@ -113,13 +113,13 @@ function send(&$sqlc)
     $telnet->Disconnect();
   }
   elseif (1 == $result)
-    $mess_str = 'Connect failed: Unable to open network connection, please check your config.';
+    $mess_str = {$lang_telnet['unable']};
   elseif (2 == $result)
-    $mess_str = 'Connect failed: Unknown host, please check your config.';
+    $mess_str = {$lang_telnet['unknown_host']};
   elseif (3 == $result)
-    $mess_str = 'Connect failed: Login failed, please check your config.';
+    $mess_str = {$lang_telnet['login_failed']};
   elseif (4 == $result)
-    $mess_str = 'Connect failed: Your PHP version does not support PHP Telnet, please check your config.';
+    $mess_str = {$lang_telnet['not_supported']};
 
   unset($result);
   unset($telnet);
