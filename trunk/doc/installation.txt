@@ -25,10 +25,19 @@ INSTALLATION:
    copy config.dist.php as config.php,
     make changes there.
 
-  If you are using Trinity, don't forget to set $server_type = 1; in config.
+  If you are using Trinity, don't forget to set
+$server_type = 1; 
+  in config.
 
  Import from /SQL/*.sql to Database set in $mmfpm_db from /script/config.php
  "install_forum.sql" is optional, you would only need this if you plan to use miniManagers' built in forum.
 
+ To make minimanager download icons u need to set on /script/config.php
+$get_icons_from_web         =  true;
  If you have issues with proper item icon display make sure the img/icons directory is set to R/W permission for webserver.
+ If you still have problems to display icons, its needed to set proxy on /script/config.php
  Alternatively you can download and extract pre-cached icons, extracting them into /img/icons directory.
+ 
+ If you have enabled captcha (bot protection)
+$enable_captcha        = true;     // false = no security image check (enable for protection against 'bot' registrations)
+ its required that GD & FreeType Library support are enabled in php

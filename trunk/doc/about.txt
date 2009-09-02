@@ -2,3 +2,15 @@ miniManager for Project MaNGOS/Trinity
 Original miniManager for Project MaNGOS Server by Q.SA
 
 ABOUT:
+
+	MiniManager for Project MaNGOS/Trinity Server is a PHP web front end to provide easy access to MaNGOS/Trinity 
+server management side. Manage/add/remove/edit/lock/ban/ect. User accounts/characters, manage DB and server itself. 
+It is small, easy to use, flexible tool.
+
+	MiniManager based on database provided by MaNGOS/Trinity but it requires aditional imports to mmfpm database 
+provided in /SQL/ folder.
+
+	The user access level is based on server MaNGOS/Trinity account's gmlevel (max GM level 3), but it can be extended 
+to unlimited number of user acess level, by default max access level is 5 (sysop), default configurations of pages allows
+players to check most of pages and sysop to actually perform any action. 
+
