@@ -20,3 +20,7 @@ To enable GD/Freetype, uncomment "extension=php_gd2.dll" in php.ini,
 Recomment the code block in info/captcha/test.php. This is for your security.
 A blank php file displays a blank page,
  preventing unwanted users knowing your php configuration)
+
+
+Last Updated
+9/3/2009
