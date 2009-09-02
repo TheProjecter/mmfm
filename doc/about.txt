@@ -1,0 +1,4 @@
+miniManager for Project MaNGOS/Trinity
+Original miniManager for Project MaNGOS Server by Q.SA
+
+ABOUT:

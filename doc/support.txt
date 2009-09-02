@@ -1,0 +1,19 @@
+miniManager support links:
+
+SVN:
+https://mmfpm.svn.sourceforge.net/svnroot/mmfpm
+
+Official support forum:
+http://mangos.osh.nu/forums/index.php?showforum=19
+
+miniManager for MaNGOS support forum:
+http://getmangos.com/community/showthread.php?t=3018
+
+miniManager for TrinityCore2 support forum:
+http://www.trinitycore.org/forum/minimanager-t1861.html
+
+miniManager for TrinityCore2 social group:
+http://www.trinitycore.org/forum/group.php?groupid=9
+
+miniManager UDB support forum:
+http://udbforums.org/index.php?topic=9602.0
