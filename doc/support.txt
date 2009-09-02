@@ -6,6 +6,9 @@ https://mmfpm.svn.sourceforge.net/svnroot/mmfpm
 Official support forum:
 http://mangos.osh.nu/forums/index.php?showforum=19
 
+
+I dont think we should link to those diferent forums, better to centralize support just on our forums
+/*
 miniManager for MaNGOS support forum:
 http://getmangos.com/community/showthread.php?t=3018
 
@@ -17,3 +20,4 @@ http://www.trinitycore.org/forum/group.php?groupid=9
 
 miniManager UDB support forum:
 http://udbforums.org/index.php?topic=9602.0
+*/
