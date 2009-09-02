@@ -7,17 +7,5 @@ Official support forum:
 http://mangos.osh.nu/forums/index.php?showforum=19
 
 
-I dont think we should link to those diferent forums, better to centralize support just on our forums
-/*
-miniManager for MaNGOS support forum:
-http://getmangos.com/community/showthread.php?t=3018
-
-miniManager for TrinityCore2 support forum:
-http://www.trinitycore.org/forum/minimanager-t1861.html
-
-miniManager for TrinityCore2 social group:
-http://www.trinitycore.org/forum/group.php?groupid=9
-
-miniManager UDB support forum:
-http://udbforums.org/index.php?topic=9602.0
-*/
+Last Updated
+9/3/2009

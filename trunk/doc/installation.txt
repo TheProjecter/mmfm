@@ -1,14 +1,17 @@
 RECOMMENDED REQUIREMENTS:
 
  WebServer with PHP support.
- MySQL 5.0.61 and above.
- PHP 5.1.0 and above.
+ MySQL 5.0.61 and above.     ( http://dev.mysql.com/downloads/mysql/5.0.html#downloads )
+ PHP 5.1.0 and above.        ( http://www.php.net/downloads.php)
 
- for windows users:
-  If you are using Apache2,
+ For windows users:
+  If you are using Apache2,  ( http://httpd.apache.org/ )
    we recommend PHP VC6 TS.
   If you are not using Apache2,
    we recommend PHP VC9 NTS.
+
+ Opera Web Browser 10.
+ Java SE 5.0.
 
 
 INSTALLATION:
@@ -16,19 +19,27 @@ INSTALLATION:
  Copy miniManager into any of your webserver folders.
 
  Configuration:
-  Option 1 (recommended)
-   copy config.user.php as config.php,
-   copy only the settings you want to change from config.dist.php into config.php
-   make changes there.
 
-  Option 2
-   copy config.dist.php as config.php,
-    make changes there.
+ - Option 1 (recommended)
+    Copy /scripts/config.user.php as /scripts/config.php.
+    Copy only the settings you want to change,
+     from /scripts/config.dist.php into /scripts/config.php
+    Make changes there.
 
-  If you are using Trinity, don't forget to set
-$server_type = 1; 
-  in config.
+ - Option 2
+    Copy /scripts/config.dist.php as /scripts/config.php,
+    Make changes there.
 
- Import from /SQL/*.sql to Database set in $mmfpm_db from /script/config.phpIf some aspect of settings are not covered here, check FAQ.txt and our forums for further details
+ - If you are using Trinity, don't forget to set
+    $server_type = 1; 
+   in config.
 
- If some aspect of installation settings are not covered by this guide, check FAQ.txt and our forums for further details.
+ Import from /SQL/*.sql to Database set in $mmfpm_db from /script/config.php
+
+
+If some aspect of installation settings are not covered by this guide,
+ check FAQ.txt and our forums for further details.
+
+
+Last Updated
+9/3/2009
