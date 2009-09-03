@@ -1,6 +1,7 @@
 miniManager for Project MaNGOS/Trinity
 Original miniManager for Project MaNGOS Server by Q.SA
 
+
 ABOUT:
 
    MiniManager for Project MaNGOS/Trinity Server is a PHP, web front end that
@@ -17,6 +18,7 @@ ABOUT:
  Default page configuration allows players to view most pages, all as read-only,
  while SysOp level has full access.
 
+
 TECHNICAL NOTES:
 
  Developed and tested with:
@@ -30,6 +32,7 @@ TECHNICAL NOTES:
   IE 8.0.6
   Java SE 5.0
   TextPad 5.2.0 / 5.3.1
+
 
 Last Updated
 9/3/2009
